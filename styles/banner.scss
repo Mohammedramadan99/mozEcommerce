@@ -1,0 +1,51 @@
+.banner{
+  height: calc(100vh - 80px);
+  .container{
+    height: 100%;
+    @include flex($align:center);
+  }
+  @media (max-width: 768px) {
+    &__content{
+      flex-direction: column;
+      &__smallTxt{
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+  &__content{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    &__smallTxt,&__regTxt{
+      font-size: rem(30);
+      text-transform: capitalize;
+    }
+    &__smallTxt{
+      flex: 1;
+      text-align: right;
+      font-weight: 300;
+    }
+    &__img{
+      flex: 2;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    &__regTxt{
+      flex: 1;
+      text-align: left;
+      font-weight: 600;
+      span{
+        display: block;
+        font-size: rem(20);
+        font-weight: 300;
+        margin-left: rem(50);
+      }
+    }
+  }
+  &__right{
+
+  }
+}

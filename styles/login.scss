@@ -1,0 +1,64 @@
+.login,.register{
+  &__header{
+    position: relative;
+    width: 100%;
+    height: rem(250);
+    background: url(../public/food/bg/bg_4.jpg) center center no-repeat fixed;
+    // margin: 0 0 90px;
+    background-size: cover;
+    @include flex();
+    &::before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba($dark__color,.5);
+      z-index: 1;
+    }
+    &__txt{
+      font-size: rem(60);
+      font-weight: 700;
+      color: $light__color;
+      text-transform: capitalize;
+      z-index: 1000;
+    }
+  }
+  &__form{
+    margin:rem(60) auto 0;
+    background-color: $light__color;
+    padding: rem(50);
+    width: rem(500);
+    @include flex($dir:column);
+    input{
+      margin-bottom: rem(20);
+      font-size: rem(17);
+      // text-transform: capitalize;
+      padding: rem(20);
+      color: rgba($dark__color,.9);
+      border: 1px solid #ddd;
+      width: 100%;
+      height: rem(50);
+      &:last-child{
+        padding: 0 !important;
+        width: rem(200);
+        background-color: transparent;
+        border: 2px solid $main__color;
+        color: $main__color;
+        font-size: rem(15);
+        font-weight: 600;
+        text-transform: uppercase;
+        border-radius: rem(30);
+        transition: $speed_duration;
+        cursor: pointer;
+        &:hover{
+          background-color: $main__color;
+          color: $light__color;
+        }
+      }
+    }
+  }
+}
+
+// 11747 V 

@@ -1,0 +1,317 @@
+.products{
+  &>.container{
+    display: flex;
+    column-gap: rem(10);
+  }
+  .spinner{
+    height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  &__header{
+    position: relative;
+    width: 100%;
+    height: rem(150);
+    background: url(../public/food/bg/bg_4.jpg) center center no-repeat fixed;
+    background-size: cover;
+    margin-bottom: rem(30);
+    @include flex($dir:column,$align:flex-start);
+    .container {
+      z-index: 1;
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba($dark__color, .5);
+      z-index: 1;
+    }
+    &__txt {
+      font-size: rem(50);
+      font-weight: 300;
+      color: $light__color;
+      text-transform: capitalize;
+    }
+    &__breadcrumbs{
+      a,svg{
+        color: #fff !important;
+        font-size: rem(17);
+        text-transform: capitalize;
+      }
+      svg{
+        color: $main__color !important;
+        border: 1px solid $main__color;
+        border-radius: 50%;
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    .container{
+      flex-direction: column;
+    }
+    &__sidebar{
+      position: relative !important;
+    }
+  }
+  &__sidebar{
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    padding-right:rem(30) ;
+    flex: 3;
+    height:100vh; // i put that beacuse without it -- sidebar sticky wouldnot work -- so you have to put the height
+    &__filteredProps{
+      @include flex();
+      flex-wrap: wrap;
+      &__item{
+        margin-right: rem(10);
+        padding: rem(10) rem(20);
+        background-color: $main__color;
+        color: #fff;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        &__del{
+          margin-right: rem(20);
+          background-color: #fff;
+          width: 20px;
+          height: 20px;
+          color: $main__color;
+          border-radius: 50%;
+          @include flex();
+          cursor: pointer;
+          svg{
+            font-weight: 800;
+            font-size: 12px;
+          }
+        }
+        &.hide{
+          display: none;
+        }
+      }
+    }
+    .MuiSlider-rail,.MuiSlider-track,.MuiSlider-thumb{
+      background-color: $main__color;
+      border-color: $main__color;
+    }
+    
+    &__header{
+      font-size: rem(30);
+      text-transform: capitalize;
+      font-weight: 900;
+      // text-align: center;
+      padding: rem(30) 0;
+    }
+    &__sections{
+      &__category, &__price, &__rating{
+        margin-bottom: rem(50);
+        border: 0;
+        .accordion-button{
+          background-color: transparent;
+          box-shadow: none;
+          margin: rem(10) 0;
+            font-size: rem(25);
+            font-weight: 300;
+            text-transform: uppercase;
+              color: $dark__color;
+            &:focus{
+              color: $main__color;
+            }
+            &::after{
+            }
+          }
+          .accordion-button:not(.collapsed)::after{
+            background-image: black;
+          }
+        &__title{
+          // margin: rem(10) 0;
+          // font-size: rem(25);
+          // font-weight: 300;
+          // text-transform: uppercase;
+        }
+      }
+      &__category{
+        &__list{
+          &__item{
+            margin-top: rem(10);
+            margin-bottom: rem(10);
+            &__txt{
+              text-transform: capitalize;
+              cursor: pointer;
+              border-bottom: 2px solid transparent;
+              transition: $speed_duration;
+              width: fit-content;
+              &:hover,&.active{
+                border-color: $main__color;
+              }
+            }
+            input{
+              margin-right: rem(10);
+            }
+            label{
+              text-transform: capitalize;
+              color: #555;
+              transition: $speed_duration;
+            }
+            &:hover{
+              label{
+                color: $main__color;
+              }
+            }
+          }
+        }
+      }
+      &__price{
+
+      }
+      &__rating{
+
+      }
+    }
+  }
+  &__right{
+    flex: 7;
+    .MuiPagination-root{
+      @include flex();
+      margin: rem(20) 0;
+    }
+    &__search{
+      // width: 50%;
+      @include flex($gap:0);
+      margin: rem(20) auto;
+      border: 2px solid ;
+      border-radius: 50px;
+      &:hover {
+        svg{
+          transform: scale(1.3);
+          color: $main__color;
+        } 
+        }
+      input{
+        flex: 9;
+        width: 100%;
+        height: 50px;
+        border: none;
+        padding: rem(10) rem(20);
+        border-radius: 50%;
+        color: $main__color;
+        font-weight: 700;
+      }
+      &__icon{
+        flex: 1;
+        width: 100%;
+        height: 100%;
+        @include flex();
+        svg{
+          transition: $speed_duration;
+        }
+      }
+    }
+    &__items{
+      // flex: 1;
+      @include grid($min:200,$gap:0);
+      &__item{
+        position: relative;
+        padding: rem(20);
+        border: 1px solid #eee ;
+        box-shadow: 0 0 10px 3px transparent;
+        transition: $speed_duration;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-height: rem(350);
+        overflow: hidden;
+        &:hover{
+          box-shadow: 0 0 10px 2px #ddd;
+          .products__right__items__item__img{
+            &::before{
+              bottom: 0;
+              font-weight: 700;
+            }
+          }
+          .products__right__items__item__addToCart{
+            bottom: 0;
+            border-color: $main__color;
+          }
+        }
+        
+        &__img{
+          position: relative;
+          width: 70%;
+          height: 200px;
+          overflow: hidden;
+        animation: translateUp 1s linear;
+          &::before{
+            content: 'review';
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: rem(10) rem(20);
+            text-transform: capitalize;
+            background-color: rgba(#fff, .8);
+            width: 100%;
+            z-index: 1000;
+            text-align: center;
+            transition: $speed_duration;
+            &:hover{
+              color: $main__color !important;
+            }
+          }
+        }
+        &__info{
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          flex: 1;
+          width: 100%;
+          &__price{
+            color: $main__color;
+          }
+        }
+        &__addToCart{
+          width: 100%;
+          padding: rem(10) rem(20);
+          text-align: center;
+          text-transform: capitalize;
+          position: absolute;
+          bottom: rem(-30);
+          background-color: #fff;
+          font-weight: 600;
+          font-size: rem(14);
+          cursor: pointer;
+          transition: $speed_duration;
+          border-left: 2px solid transparent;
+          border-right: 2px solid transparent;
+          &:hover{
+            // background-color: $main__color;
+            // color: #fff !important;
+            border-width: 20px;
+            border-color: $main__color;
+            color: $main__color;
+            // border-color: #fff !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes translateUp {
+  0%{
+    opacity: 0;
+    // transform: translateY(100px);
+    transform: scale(.6);
+  }
+  100%{
+    opacity: 100%;
+    transform: scale(1);
+    // transform: translateY(0);
+  }
+}

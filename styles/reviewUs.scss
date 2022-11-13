@@ -1,0 +1,35 @@
+.reviewUs{
+  height: calc(100vh - rem(90));
+  @include flex();
+  &__wrapper{
+    padding: rem(30);
+    height: 50%;
+    border: 1px solid #eee;
+    &__header{
+      font-size: rem(40);
+      text-transform: capitalize;
+    }
+    &__txt{
+      color: #999;
+      margin-bottom: rem(40);
+    }
+    &__form{
+      &__submit{
+        background-color: transparent;
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+        border-left: 2px solid transparent;
+        border-right: 2px solid transparent;
+        padding: rem(10) rem(20);
+        font-weight: 600;
+        color: $main__color;
+        border-radius: rem(40);
+        transition: $speed_duration;
+        &:hover{
+          border-left-color: $main__color;
+          border-right-color: $main__color;
+        }
+      }
+    }
+  }
+}

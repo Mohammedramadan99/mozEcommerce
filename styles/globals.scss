@@ -1,0 +1,54 @@
+// ############## functions ##############
+@function rem($value) {
+  $remvalue: $value;
+  $remValue: ($value / 16)+rem;
+  @return $remValue;
+}
+
+@mixin flex($justify: center, $align: center, $gap: 10, $dir: row) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  gap: rem($gap);
+  flex-direction: $dir;
+}
+
+@mixin grid($min, $gap: 10) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(rem($min), 1fr));
+  gap: rem($gap);
+}
+
+@mixin grid-fr($fr) {
+  display: grid;
+  grid-template-columns: $fr;
+}
+
+@mixin img($fit: contain) {
+  width: 100%;
+  height: 100%;
+  object-fit: $fit;
+}
+
+@mixin img_rounded() {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+@mixin btn($bg: transparent, $color: $secondary-color, $hover-bg: $secondary_color, $hover-color: #fff, $padding: 7px 16px, $border: 1px solid $secondary-color, $b-radius: 20px) {
+  background-color: $bg;
+  border: $border;
+  padding: $padding;
+  border-radius: $b-radius;
+  color: $color;
+  transition: $normal_transition;
+  text-transform: capitalize;
+
+  &:hover {
+    background-color: $hover-bg;
+    color: $hover-color;
+  }
+}
+

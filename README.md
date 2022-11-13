@@ -1,34 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+// multiple filteration (ratings with price) -- apifeatures in next js 
+// special food product - 635a54c60dd49b3e0493dcbb
+// filter product | dashboard 
+// edit filter bar 
 
-## Getting Started
+//
+import Spinner from 'react-bootstrap/Spinner';
+<Spinner animation="border" variant="danger" />
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+//
+import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
+<Button variant="primary" disabled>
+        <Spinner
+          as="span"
+          animation="border"
+          size="sm"
+          role="status"
+          aria-hidden="true"
+        />
+        <span className="visually-hidden">Loading...</span>
+      </Button>{' '}
+      <Button variant="primary" disabled>
+        <Spinner
+          as="span"
+          animation="grow"
+          size="sm"
+          role="status"
+          aria-hidden="true"
+        />
+        Loading...
+      </Button>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+  ================================================================
+      <Rating
+  name="hover-feedback"
+  value={value}
+  precision={0.5}
+  getLabelText={getLabelText}
+  onChange={(event, newValue) => {
+    setValue(newValue);
+  }}
+  onChangeActive={(event, newHover) => {
+    setHover(newHover);
+  }}
+  emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+/>
+{value !== null && (
+  <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
+)}

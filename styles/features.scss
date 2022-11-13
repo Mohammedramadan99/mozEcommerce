@@ -1,0 +1,48 @@
+.features{
+  padding: rem(100) 0;
+  background-color: rgba($main__color, 1);
+  color: $light__color;
+  &__items{
+    @include grid($min: 300);
+    &__item{
+      @include flex($align:center);
+      border: 2px solid #fff;
+      padding: 20px;
+      border-radius: 50px;
+          transition: $speed_duration;
+          user-select: none;
+      &:hover{
+        border-color: rgba($main__color, .9);
+        .features__items__item__icon svg{
+          transform: scale(1.2);
+        }
+      }
+      &__icon{
+        flex: 1;
+        width: 100%;
+        height: 100%;
+        @include flex();
+        background-color: $light__color;
+        color: $main__color;
+        border-radius: 50%;
+        svg{
+          font-size: rem(30);
+          transition: $speed_duration;
+        }
+      }
+      &__info{
+        flex: 5;
+        &__title{
+          text-transform: capitalize;
+          font-size: rem(25);
+          font-weight: 300;
+        }
+        &__txt{
+          color: #eee;
+          font-size: rem(12);
+        }
+      }
+    }
+  }
+
+}

@@ -1,0 +1,197 @@
+@import './vars';
+.cart{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  &__overlay{
+    width: 100%;
+    height: 100%;
+    background-color: rgba($dark__color, .8);
+    z-index: 100;
+    cursor: url(../public/close.png) 15 15, auto;
+    animation: opacity 1s linear;
+  }
+  &__wrapper{
+    position: absolute;
+    width: 500px;
+    height: 100%;
+    right: 0;
+    background-color: $light__color;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    animation: translateLeft 1s linear;
+    overflow: hidden;
+    &__emptyCart{
+      @include flex($dir:column);
+      &__icon{
+        svg{
+          font-size: rem(30);
+        }
+      }
+    }
+    &__title{
+      padding: rem(20) rem(10);
+      font-size: rem(15);
+      font-weight: 600;
+      text-transform: capitalize;
+      // border-bottom: 1px solid #ccc;
+    }
+    &__products{
+      display: flex;
+      flex-direction: column;
+      background-color: #fff;
+      width: 100%;
+      overflow-y: scroll;
+      // height: 100%;
+    animation: translateLeft 1s linear;
+      &__product{
+        padding-top: rem(20);
+        padding-bottom: rem(20);
+        border-bottom: 1px solid $light__color;
+        padding: rem(10);
+        display: flex;
+        gap: 20px;
+        justify-content: space-around;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        // border-radius: 20px;
+        &__img{
+          flex: 1;
+          position: relative;
+          padding: rem(30);
+          // background-color: #fff;
+          border-radius: 50%;
+          width: 100%;
+          height: 50px;
+          &__quantity {
+              position: absolute;
+              left: 0;
+              top: 10%;
+              transform: translateY(-50%);
+              // background-color: $main__color;
+              user-select: none;
+              color: $main__color;
+              padding: rem(2);
+              font-size: rem(10);
+              border-radius: 50%;
+              font-weight: 900;
+            }
+        }
+        &__details{
+          position: relative;
+          flex: 5;
+          overflow: hidden;
+          &__name{
+            font-weight: 700;
+            font-size: rem(15);
+            word-wrap: none;
+            white-space: nowrap;
+          }
+          &__category{
+            color: #999;
+            font-size: rem(12);
+            text-transform: capitalize;
+            margin-top: rem(10);
+            margin-bottom: rem(10);
+          }
+          &__price{
+            font-size: rem(17);
+            color: $main__color;
+            font-weight: 800;
+          }
+          
+        }
+        &__delete{
+          font-size: rem(15);
+          cursor: pointer;
+          transition: $speed_duration;
+          &:hover{
+            color: $main__color;
+          }
+        }
+      }
+    }
+    &__priceContent{
+      padding: rem(20);
+      margin-top: auto;
+      background-color: #fff;
+      @include flex($dir:column);
+    // animation: translateLeft 1s linear;
+      &__price,&__shipping,&__total{
+        width: 100%;
+        @include flex($justify:space-between);
+        padding: rem(10) rem(20);
+        font-size: rem(12);
+        text-transform: capitalize;
+        &__title{
+          font-weight: 600;
+        }
+        &__number{
+          color: $main__color;
+        }
+      }
+      &__total{
+        border-top: 1px solid $light__color;
+        &__title{
+          font-weight: 800 !important;
+        }
+        &__number{
+          font-weight: 800 !important;
+        }
+      }
+      &__checkoutBtn{
+        background-color: $dark__color;
+        margin-top: rem(20) !important;
+        padding: rem(10) rem(20);
+        text-align: center;
+        color: $light__color !important;
+        text-transform: capitalize;
+        font-weight: 500;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 20px;
+        transition: $speed_duration;
+        cursor: pointer;
+        &:hover{
+          background-color: $main__color;
+        }
+      }
+    }
+  }
+}
+
+@keyframes opacity {
+  0%{
+    opacity: 0;
+    transform: scale(.5);
+  }
+  50%{
+    opacity: .5;
+    transform: scale(2);
+  }
+  100%{
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes translateLeft {
+  0%{
+    opacity: 0;
+    height: 1%;
+  }
+  50%{
+    opacity: .5;
+    height: 50%;
+  }
+  100%{
+    opacity: 1;
+    height: 100%;
+  }
+}

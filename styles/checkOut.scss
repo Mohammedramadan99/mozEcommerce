@@ -1,0 +1,101 @@
+.checkout{
+  .container{
+    display: flex;
+    column-gap: rem(40);
+  }
+  &__left{
+    flex: 6;
+    &__title{
+      margin: rem(20) 0;
+      font-size: rem(40);
+      text-transform: capitalize;
+      font-weight: 300;
+    }
+    &__breadcrumbs{
+      margin: rem(20) 0;
+    }
+    &__form{
+
+      &__blockOne,&__blockTwo{
+        &__contactInfo,&__shipping{
+          &__header{
+            margin: rem(10) 0;
+            font-size: rem(20);
+            font-weight: 500;
+            text-transform: capitalize;
+          }
+        }
+      }
+      &__blockTwo{
+        &__shipping{
+          &__inputs{
+            &__submit{
+              padding: rem(20) rem(40);
+              background-color: $main__color;
+              border: 0;
+              color: #fff;
+              transition: $speed_duration;
+              text-transform: capitalize;
+              border-radius: rem(30);
+              font-size: rem(15);
+              font-weight: 600;
+              &:hover{
+                background-color: darken($main__color, 10%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &__right{
+    flex: 4;
+    &__cartProducts{
+      &__item{
+        display: flex;
+        align-items: center;
+        column-gap: rem(20);
+        height: rem(100);
+        user-select: none;
+        box-shadow: $light_shadow;
+        border-radius: rem(20);
+        margin-bottom: rem(20);
+        &__img{
+          position: relative;
+          width: 100%;
+          height: 50%;
+          flex: 2;
+        }
+        &__details{
+          flex: 8;
+          &__name{
+            font-size: rem(12);
+            font-weight: 600;
+          }
+          &__category{
+            font-size: rem(12);
+            font-weight: 300;
+            display: inline-block;
+          }
+          &__qty{
+            font-size: rem(12);
+            margin-left: rem(10);
+            color: $main__color;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+    &__cartSummery{
+      &__item{
+        margin-top: rem(20);
+        display: flex;
+        justify-content: space-between;
+        &__title{
+          font-weight: 600;
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+}

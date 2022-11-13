@@ -1,0 +1,118 @@
+@import '../styles/vars';
+.footer{
+  .container{
+    padding-top: rem(50);
+    padding-bottom: rem(50);
+    @include grid($min:300,$gap:30);
+  }
+  @media (max-width: 768px) {
+    .container{
+      @include grid($min: 200, $gap: 30);
+    }
+    &__partOne{
+      width: 100% !important;
+    }
+    &__partTwo,
+    &__partThree {
+
+    }
+  }
+    @media (max-width: 458px) {
+      .container {
+          @include grid($min: 220, $gap: 20);
+        }
+    }
+  &__partOne,&__partTwo,&__partThree{
+    &:hover{
+      .footer{
+        &__partOne,&__partTwo,&__partThree {
+          &__header{
+            &::before{
+              width: rem(80);
+            }
+          }
+        }
+      }
+    }
+    &__header{
+      position: relative;
+      font-size: rem(20);
+      font-weight: 300;
+      text-transform: uppercase;
+      padding: rem(20) 0;
+      margin: rem(20) 0;
+      &::before{
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: rem(40);
+        height: rem(4);
+        background-color: $main__color;
+        transition: $speed_duration;
+      }
+    }
+    &__logo{
+      padding: rem(20) 0;
+    }
+  }
+  &__partOne{
+    &__txt{
+      font-size: rem(15);
+      padding-left: rem(10);
+      padding-right: rem(10);
+    }
+    &__links{
+      margin-top: rem(20);
+      @include flex($justify:space-evenly);
+      &__link{
+        @include flex();
+        padding: rem(8);
+        border-radius: 50%;
+        border: rem(1) solid $main__color;
+        color: $main__color;
+        transition: $speed_duration;
+        cursor: pointer;
+        &:hover{
+          background-color: $main__color;
+          color: $light__color;
+        }
+        svg{
+          font-size: rem(15);
+        }
+      }
+    }
+  }
+  &__partTwo{
+    &__links{
+      line-height: 3;
+      &__link{
+        text-transform: capitalize;
+        font-size: rem(16);
+        cursor: pointer;
+      }
+    }
+  }
+  &__partThree{
+    &__items{
+
+      &__item{
+        margin-bottom: rem(20);
+        &__title{
+          display: flex;
+          margin-bottom: rem(10);
+          &__txt{
+            margin-left: rem(10);
+            text-transform: capitalize;
+          }
+        }
+      }
+    }
+  }
+  &__copyright{
+    text-align: center;
+    text-transform: capitalize;
+    padding: rem(20) 0;
+    border-top: 1px solid #f1f1f1;
+  }
+}

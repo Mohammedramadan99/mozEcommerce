@@ -1,0 +1,96 @@
+.cstSys{
+  padding: rem(30) rem(50);
+  background-color: #ffeb3b;
+  // height: 500px;
+  .container{
+    height: 100%;
+    .quoteIcon{
+      margin: auto;
+      border: 2px solid $dark__color;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      padding: rem(10);
+    }
+  }
+  @media (max-width: 768px) {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    .container{
+      .quoteIcon{
+        width: rem(50) !important;
+        height: rem(50) !important;
+        margin-bottom: rem(20) !important;
+      }
+    }
+    &__items{
+      &__item{
+        padding: 0 !important;
+        line-height: 2 !important;
+        &__opinion{
+          font-size: rem(15) !important;
+        }
+        &__name{
+          font-size: rem(20) !important;
+        }
+        &__rating{
+          margin-top: rem(20) !important;
+          .MuiRating-root{
+            font-size: rem(15) !important;
+          }
+        }
+      }
+    }
+  }
+  &__items{
+    height: 100%;
+    margin: auto;
+    @include flex();
+    .swiper {
+        padding-top: rem(5);
+        padding-bottom: rem(30);
+    
+        .swiper-wrapper {
+          .swiper-slide {
+            text-align: center;
+          }
+        }
+    
+        .swiper-pagination {
+          position: absolute !important;
+          bottom: 0 !important;
+          padding-top: rem(10);
+    
+          // background-color: #fff !important;
+          .swiper-pagination-bullet {
+            border: 3px solid $main__color;
+            background-color: transparent;
+          }
+    
+          .swiper-pagination-bullet-active {
+            background-color: $main__color;
+            border-color: transparent;
+            opacity: .7;
+          }
+        }
+      }
+    &__item{
+      padding-left: rem(30);
+      padding-right: rem(30);
+      text-align: center;
+      line-height: 3;
+      user-select: none;
+      &__opinion{
+        font-size: rem(30);
+        font-weight: 300;
+        opacity: .4;
+        text-transform: lowercase;
+      }
+      &__name{
+        font-size: rem(30);
+        font-weight: 300;
+        text-transform: capitalize;
+      }
+    }
+  }
+}

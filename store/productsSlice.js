@@ -175,24 +175,23 @@ export const fetchFilteredProductsAction = createAsyncThunk(
       let link = `api/product?page=${currentPage}`;
       if (keyword) {
         // link = `api/product?keyword=${keyword}`;
-        link = link.concat(`&keyword=${keyword}`);
+        link = link.concat(`&page=1&keyword=${keyword}`);
       }
       if (priceGreater !== 0) {
         // link = link.concat(
         //   `&price[gte]=${priceGreater}&price[lte]=`
         // );
-        link = `api/product?page=${currentPage}&price[gte]=${priceGreater}`;
+        link = `api/product?page=1&price[gte]=${priceGreater}`;
       }
       if (priceLess !== 300) {
-        link = `api/product?page=${currentPage}&price[lte]=${priceLess}`;
-
+        link = `api/product?page=1&price[lte]=${priceLess}`;
         // link = link.concat(`&price[gte]=&price[lte]=${priceLess}`);
       }
       if (category) {
-        link = link.concat(`&category=${category}`);
+        link = link.concat(`&category=${category}&page=1`);
       }
       if (ratings) {
-        link = `api/product?ratings[gte]=${ratings}&price[gte]=${priceGreater}`;
+        link = `api/product?ratings[gte]=${ratings}&price[gte]=${priceGreater}&page=1`;
         // link = link.concat(`&ratings[gte]=${ratings}`);
       }
       const { data } = await axios.put(`${origin}/${link}`, perPage);

@@ -119,7 +119,8 @@ function Products()
                   <CloseIcon/>
                 </div>
                 {
-                  item.payload
+                  item.type === 'ratings' ?
+                  <Rating value={item?.payload} readOnly precision={.5} size="small" color="" /> : item.payload
                 }
               </div>
             ))}

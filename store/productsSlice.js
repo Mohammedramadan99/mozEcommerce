@@ -33,7 +33,7 @@ export const createProductAction = createAsyncThunk(
       //http call
       const productData = { ...product };
       // console.log("from redx " + formData);
-      const { data } = await axios.product(
+      const { data } = await axios.post(
         `${origin}/api/product`,
         productData,
         config

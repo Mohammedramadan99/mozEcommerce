@@ -20,7 +20,7 @@ export const createCategoryAction = createAsyncThunk(
     const user = process.browser && getState()?.users;
     const { userAuth } = user;
     const config = {
-      headers: {
+    headers: {
         Authorization: `Bearer ${userAuth?.token}`,
       },
     };

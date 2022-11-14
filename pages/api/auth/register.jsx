@@ -15,7 +15,7 @@ const handler = nc();
 
 
 
-handler.use(photoUpload).post(async (req, res) =>
+handler.post(async (req, res) =>
 {
   await db.connect();
   try

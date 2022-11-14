@@ -5,6 +5,7 @@ import cloudinary from "cloudinary"
 
 import Product from "../../../Modal/ProductsModel"
 import APIFeatures from '../../../utils/ApiFeatures';
+import { postImgResize, photoUpload } from '../../../utils/uploadingImg'
 // import AllProducts from '../../../components/db'
 cloudinary.config({
   cloud_name: 'dtmjc8y9z',
@@ -48,12 +49,9 @@ handler.put(async (req, res) =>
   const apiFeatures = new APIFeatures(Product.find(), req.query).search().filter();
     let products = await apiFeatures.query;
     let filteredProductsCount = products.length;
-    // if (req.query.page)
-    // {
-      // console.log(req.query.page)
-    // }
-  // apiFeatures.pagination(products.length)
-  // products = await apiFeatures.query.clone();
+    
+  apiFeatures.pagination(products.length)
+  products = await apiFeatures.query.clone();
   const { query, paginationResult } = apiFeatures
 
       res.status(200).json({
@@ -114,7 +112,6 @@ handler.post(async (req, res) =>
     })
   }
   await db.disconnect();
-  
 })
 
 export default handler

@@ -89,6 +89,10 @@
             font-weight: 800;
             font-size: 12px;
           }
+          
+        }
+        .MuiRating-root {
+          color: #fff !important;
         }
         &.hide{
           display: none;
@@ -240,7 +244,7 @@
             border-color: $main__color;
           }
         }
-        
+                
         &__img{
           position: relative;
           width: 70%;

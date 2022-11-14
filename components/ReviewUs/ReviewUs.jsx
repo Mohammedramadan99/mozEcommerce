@@ -18,7 +18,7 @@ function ReviewUs()
     dispatch(createGlobalReviewAction(reviewData))
   }
   useEffect(() => {
-    if (!userAuth._id) {
+    if (!userAuth?._id) {
       router.push('/')
     }
   }, [userAuth?._id])

@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProductDetailsAction, fetchFilteredProductsAction, reset } from '../../store/productsSlice'
@@ -25,8 +24,9 @@ import 'swiper/css/free-mode'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation';
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import ProductsSlider from '../Products/ProductsSlider'
-function ProductDetails({id})
+function ProductDetails()
 {
   const dispatch = useDispatch()
   const { productDetails: product,addedReview ,productsList:{products}} = useSelector(state => state.products)
@@ -36,6 +36,9 @@ function ProductDetails({id})
   const [open, setOpen] = useState(false);
   const [rating, setRating] = useState(0);
   const categoryProducts = products?.filter(p => p._id !== product?._id)
+  
+  const router = useRouter();
+  const { id } = router.query;
   const ChangeQuantity = (type) =>
   {
     if (type === "plus")
@@ -153,7 +156,7 @@ function ProductDetails({id})
           <div className="productDetails__bottom__relatedPoriductsSection">
             <div className="productDetails__bottom__relatedPoriductsSection__header">
               Products you may also like
-              <span> Based on item's category </span>
+              <span> Based on the category of {product?.name} </span>
             </div>
             <div className="productDetails__bottom__relatedPoriductsSection__products">
               <ProductsSlider products={categoryProducts} />

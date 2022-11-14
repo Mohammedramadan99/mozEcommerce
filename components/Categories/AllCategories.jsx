@@ -91,7 +91,7 @@ function AllCategories()
         >
           {categories?.map(item => (
             <SwiperSlide key={item?.id}>
-              <Link href='#'>
+              <Link href={`/products?category=${item?.title}`}>
                 <a className="allCategories__items__item">
                   <div className="allCategories__items__item__img">
                     <Image src={item.images[0].url} layout="fill" objectFit="contain" alt="categoryImg" />

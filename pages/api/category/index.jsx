@@ -20,7 +20,7 @@ handler.get(async (req, res) =>
   }
 
 })
-handler.use(isAuth).post(async (req, res) =>
+handler.post(async (req, res) =>
 {
   await db.connect();
   try

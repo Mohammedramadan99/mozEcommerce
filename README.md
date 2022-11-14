@@ -1,4 +1,6 @@
 // multiple filteration (ratings with price) -- apifeatures in next js 
+// search in page 2 of products is not good 
+
 // special food product - 635a54c60dd49b3e0493dcbb
 // filter product | dashboard 
 // edit filter bar 

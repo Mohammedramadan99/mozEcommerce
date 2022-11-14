@@ -50,12 +50,11 @@ const postImgResize = async (req, res, next) =>
   //check if there is no file
   if (!req.file) return next();
   req.file.filename = `user-${Date.now()}-${req.file.originalname}`;
-
+  console.log(req.file.buffer)
   await sharp(req.file.buffer)
-    .resize(500, 500)
-    .toFormat("jpeg")
-    .jpeg({ quality: 90 })
-    .toFile(path.join(`public/images/posts/${req.file.filename}`));
+    .resize(100, 100)
+    .toFormat("webp")
+    .webp({ quality: 90 })
   next();
 };
 export { photoUpload, profilePhotoResize, postImgResize };

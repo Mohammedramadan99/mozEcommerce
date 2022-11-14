@@ -117,7 +117,7 @@ function Products()
               <div key={i} className={`products__sidebar__filteredProps__item ${item === 'hide' || item == [0, 300] ? 'hide' : ''}`}>
                 <div className="products__sidebar__filteredProps__item__del" onClick={() => removeActiveFilter(item)}>
                   <CloseIcon/>
-                </div>
+                </div> 
                 {
                   item.type === 'ratings' ?
                   <Rating value={item?.payload} readOnly precision={.5} size="small" color="" /> : item.payload

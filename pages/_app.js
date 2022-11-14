@@ -3,16 +3,24 @@ import Layout from "../components/Layout";
 import { wrapper } from "../store/store";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/style.scss";
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+);
 const App = ({ Component, ...rest}) =>
 {
   const { store, props } = wrapper.useWrappedStore(rest)
   return (
     <Provider store={store}>
-          <Layout>
-            <Component {...props.pageProps} />
-          </Layout>
+      <Elements stripe={stripePromise}>
+        <Layout>
+          <Component {...props.pageProps} />
+        </Layout>
+      </Elements>
     </Provider>
-    );
+  );
   };
   
   export default App

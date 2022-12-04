@@ -33,7 +33,7 @@ function Success()
     const userId = _id
     const { customer, payment_intent, amount_subtotal, amount_total, customer_details, payment_status } = checkoutSession
     dispatch(createOrderAction({ userId, products, customer, payment_intent, amount_subtotal, amount_total, customer_details, payment_status }))
-  }, [checkoutSession])
+  }, [dispatch,checkoutSession])
 
   useEffect(() => {
     if (typeof window !== 'undefined')

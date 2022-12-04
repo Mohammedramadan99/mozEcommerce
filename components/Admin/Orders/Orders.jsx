@@ -22,7 +22,7 @@ export default function Orders()
       client: order?.user,
       products: order?.products?.length,
       amount: (order?.total / 100)?.toLocaleString(),
-        deliveryStatus: order?.delivery_status,
+      deliveryStatus: order?.delivery_status,
       date: moment(order?.createdAt).fromNow()
     }
   })
@@ -38,7 +38,7 @@ export default function Orders()
         return (
           <>
             <div className="imageContainer" style={{ position: "relative", borderRadius: "50%", width: "40px", height: "40px", overflow: "hidden" }}>
-              <Image src={ params?.row?.client?.personalImage?.url } objectFit="contain" alt="clientImg" />
+              <Image src={ params?.row?.client?.personalImage?.url } layout="fill" objectFit="contain" alt="clientImg" />
             </div>
             <div className="clientName">
               {params?.row?.client?.name}

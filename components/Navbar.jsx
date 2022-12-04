@@ -77,20 +77,23 @@ function NavBar()
             }
           </a>
         </Link>
-        {userAuth?.personalImage?.url || userAuth?.name && (
-          <Link href="/profile">
+        {/* {userAuth?.personalImage?.url || userAuth?.name && ( */}
+          <Link href="#">
             <a className='nav__profile'>
               <div className="nav__profile__img" >
-                {userAuth?.personalImage?.url ?
+                <div className="" style={{width:"80px",height:"80px",borderRadius:"50%"}}>
                   <Image src={userAuth?.personalImage?.url} layout="fill" objectFit="contain" alt="img" /> :
+                </div>
+                {/* {userAuth?.personalImage?.url ?
+                  // <Image src={userAuth?.personalImage?.url} layout="fill" objectFit="contain" alt="img" /> :
                   // <img src='https://res.cloudinary.com/dtmjc8y9z/image/upload/v1669488287/avatars/x8u1g3mhfluvr4dnnbxi.jpg' alt="img" /> :
-                  userAuth?.name && (
-                    <div className='nav__profile__img__litter'> {userAuth.name[0]} </div>
-                  )}
+                  userAuth?.name && ( */}
+                    {/* <div className='nav__profile__img__litter'> {userAuth.name[0]} </div> */}
+                  {/* )} */}
               </div>
             </a>
           </Link>
-        )}
+        {/* )} */}
 
       </div>
     </nav>

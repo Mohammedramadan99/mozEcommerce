@@ -3,7 +3,9 @@ import { useSelector } from "react-redux";
 import Cart from "../Cart/Cart";
 import Footer from "../Footer";
 import dynamic from "next/dynamic";
-const Navbar = dynamic(() => import('../Navbar'))
+// import NavBar from "../Navbar";
+const NavBar = dynamic(() => import('../Navbar'), { ssr: false })
+
 
 export default function MainLayout({ title, children })
 {
@@ -16,7 +18,7 @@ export default function MainLayout({ title, children })
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header>
-        <Navbar/>
+        <NavBar />
         { showCart && <Cart /> }
       </header>
       <main>{children}</main>

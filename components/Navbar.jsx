@@ -1,12 +1,11 @@
-import React from 'react'
 import Logo from './logo/Logo'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { showCartComponent } from '../store/productsSlice'
 import { logoutAction } from '../store/usersSlice'
-import Image from 'next/image';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 function NavBar()
 {
@@ -16,14 +15,9 @@ function NavBar()
   const { userAuth } = useSelector(state => state.users)
   const { cartQuantity, products, showCart } = useSelector(state => state.products.cart)
 
-  console.log(products)
   const showCartHandler = () =>
   {
     dispatch(showCartComponent())
-  }
-  const profileClickHandler = () =>
-  {
-    router.push('/profile')
   }
   const logoutHandler = () =>
   {
@@ -100,6 +94,7 @@ function NavBar()
 
       </div>
     </nav>
+    
   )
 }
 

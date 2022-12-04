@@ -1,10 +1,12 @@
+import dynamic from "next/dynamic";
 import Head from "next/head";
 import { useSelector } from "react-redux";
-import Dashboard from "../Admin/Dashboard";
+
+const Dashboard = dynamic(() => import("../Admin/Dashboard"));
 
 export default function DashboardLayout({ title, children })
 {
-  const { showCart } = useSelector(state => state.products.cart)
+  
   return (
     <>
       <Head>

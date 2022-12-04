@@ -1,10 +1,11 @@
 .nav{
   padding-top: rem(10);
   padding-bottom: rem(10);
+  height: rem(80);
   min-height: rem(80);
   @include flex();
-  // background-color: $light__color;
-  // box-shadow: $light_shadow;
+  position: sticky;
+  top: 0;
   @media (max-width: 768px) {
     .container{
       flex-wrap: wrap;

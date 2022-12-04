@@ -1,0 +1,57 @@
+.dashboard__container__orderDetails{
+  min-height: calc(100vh - 100px);
+  &__wrapper{
+  height: 100%;
+  &__header{
+    text-align: center;
+    font-weight: 600;
+    font-size: rem(20);
+    margin-bottom: rem(20);
+  }
+  &__info{
+    
+    @include flex($justify:space-between,$align:flex-start);
+    column-gap: rem(20);
+    &__details{
+      flex: 1;
+      background-color: #fff;
+      padding: rem(20);
+      &__item{
+        display: flex;
+        padding-top: rem(10);
+        padding-bottom: rem(10);
+        &__title{
+          width: rem(150);
+          font-weight: 600;
+        }
+        &__value{
+
+        }
+      }
+    }
+    &__orderProducts{
+      flex: 1;
+      background-color: #fff;
+      padding: rem(20);
+      &__title{
+
+      }
+      &__items{
+        &__item{
+          @include flex($justify: space-between);
+          padding: rem(20) 0;
+          &__left{
+            flex: 2;
+            width: rem(50);
+            height: rem(50);
+          }
+          &__right{
+            flex: 10;
+            @include flex($justify: space-between);
+          }
+        }
+      }
+    }
+  }
+}
+}

@@ -1,0 +1,68 @@
+.dashboard__container__editProduct__wrapper,
+.dashboard__container__editCategory__wrapper{
+  display: flex;
+  column-gap: rem(20);
+  &__basicInfo, &__left{
+    background-color: #fff;
+    padding: rem(20);
+  }
+  &__basicInfo{
+    flex: 7;
+    &__form{
+      &__row{
+        @include flex($justify:space-between);
+        margin: rem(10) 0;
+      }
+      &__submit{
+        width: 100%;
+        padding: rem(10);
+        text-align: center;
+        font-weight: 600;
+        text-transform: capitalize;
+        border-radius: rem(20);
+        border: 2px solid $main__color;
+        color: $main__color;
+        transition: $speed_duration;
+        &:hover{
+          box-shadow: $light_shadow;
+          background-color: $main__color;
+          color: #fff;
+          border-radius: rem(50);
+        }
+      }
+      &__item{
+        display: flex;
+        flex-direction: column;
+        margin: rem(10) 0;
+        width: 100%;
+        height: 100%;
+        label{
+          text-transform: uppercase;
+          font-weight: 600;
+          font-size: rem(12);
+          padding-bottom: rem(5);
+        }
+        input,textarea,select{
+          border-radius: rem(10);
+          padding: 0 rem(15);
+          border: 2px solid $light__border__color;
+          background-color: $light__color;
+        }
+        input{
+          height: rem(45);
+        }
+        select{
+          height: rem(45);
+          width: 100%;
+        }
+        textarea{
+          padding-top: rem(10);
+          padding-bottom: rem(10);
+        }
+      }
+    }
+  }
+  &__left{
+    flex: 5;
+  }
+}

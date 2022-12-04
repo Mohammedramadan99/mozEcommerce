@@ -1,0 +1,107 @@
+.dashboard__container__userDetails{
+  &__wrapper{
+    display: flex;
+    &__activities,
+      &__info {
+        background-color: #fff;
+        padding: rem(20);
+        &__title {
+          padding-bottom: rem(20);
+          text-transform: capitalize;
+          font-weight: 600;
+        }
+      }
+    &__info{
+      flex: 5;
+      margin-right: rem(10);
+      &__title{
+        
+      }
+      &__profile{
+        display: flex;
+        align-items: center;
+        gap: rem(20);
+        padding-bottom: rem(20);
+        &__img{
+          position: relative;
+          width: rem(120);
+          height: rem(120);
+          border: 2px solid $main__color;
+          border-radius: 50%;
+          img{
+            border-radius: 50%;
+            padding: 10px;
+            border: 4px solid #fff !important;
+          }
+        }
+        &__name{
+          text-transform: capitalize;
+          font-size: rem(15);
+          font-weight: 600;
+        }
+      }
+      &__communication,&__bio{
+        &__title{
+          text-transform: capitalize;
+          font-weight: 500;
+          padding-bottom: rem(10);
+        }
+        &__items{
+          &__item{
+            display: flex;
+            padding-top: rem(10);
+            padding-bottom: rem(10);
+            &__icon{
+              margin-right: rem(20);
+              svg{
+                color: $main__color;
+              }
+            }
+            &__txt{
+  
+            }
+          }
+        }
+      }
+    }
+    &__activities{
+      flex: 7;
+      margin-left: rem(20);
+      &__items{
+        &__item{
+          position: relative;
+          margin-left: rem(20);
+          padding-left: rem(20);
+          border-left: 2px dashed $light__border__color;
+          transition: $speed_duration;
+          margin-bottom: rem(20);
+          &:hover{
+            border-color: $main__color;
+            &::before{
+              background-color: $main__color;
+            }
+          }
+          &::before{
+            content: "";
+            position: absolute;
+            width: rem(25);
+            height: rem(25);
+            background-color: #999;
+            border-radius: 50%;
+            top: 0;
+            left: rem(-15);
+            border: 7px solid $light__color;
+            transition: $speed_duration;
+          }
+          &__title{
+            font-weight: 600;
+            padding-bottom: rem(10);
+          }
+          &__content{
+
+          }
+        }
+      }
+    } 
+  }
+}

@@ -5,45 +5,62 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 
 // #1 => make the schema
-const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "Please Enter Your Name"],
-    maxLength: [30, "Name cannot exceed 30 characters"],
-    minLength: [4, "Name should have more than 4 characters"],
-  },
-  email: {
-    type: String,
-    required: [true, "Please Enter Your Email"],
-    // unique: true,
-    // validate: [validator.isEmail, "Please Enter a valid Email"],
-  },
-  password: {
-    type: String,
-    required: [true, "Please Enter Your Password"],
-    minLength: [8, "Password should be greater than 8 characters"],
-    select: false,
-  },
-  personalImage: {
-    public_id: {
+const userSchema = new mongoose.Schema(
+  {
+    name: {
       type: String,
-      require: true,
+      required: [true, "Please Enter Your Name"],
+      maxLength: [30, "Name cannot exceed 30 characters"],
+      minLength: [4, "Name should have more than 4 characters"],
     },
-    url: {
+    email: {
       type: String,
-      require: true,
+      required: [true, "Please Enter Your Email"],
+      // unique: true,
+      // validate: [validator.isEmail, "Please Enter a valid Email"],
     },
+    password: {
+      type: String,
+      required: [true, "Please Enter Your Password"],
+      minLength: [8, "Password should be greater than 8 characters"],
+      select: false,
+    },
+    personalImage: {
+      public_id: {
+        type: String,
+        require: true,
+      },
+      url: {
+        type: String,
+        require: true,
+      },
+    },
+    role: {
+      type: String,
+      default: "user",
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
+
+    resetPasswordToken: String,
+    resetPasswordExpire: Date,
   },
-  role: {
-    type: String,
-    default: "user",
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  resetPasswordToken: String,
-  resetPasswordExpire: Date,
+  {
+    toJSON: {
+      virtuals: true,
+    },
+    toObject: {
+      virtuals: true,
+    },
+    timestamps: true,
+  }
+);
+userSchema.virtual("notifications", {
+  ref: "Notification",
+  foreignField: "user",
+  localField: "_id",
 });
 
 // #2 =>  hashing password

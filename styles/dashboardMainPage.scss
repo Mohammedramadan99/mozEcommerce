@@ -1,0 +1,85 @@
+.dashboard__container__content{
+  &__mainPage{
+    padding: rem(20);
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: rem(20);
+    background-color: #fff;
+    &__left{
+      flex: 8;
+      &__overview{
+        margin-bottom: rem(20);
+        display: flex;
+        flex-direction: column;
+        padding: rem(20);
+        color: $dark__color;
+        border-radius: rem(20);
+        &__title{
+          font-size: rem(30);
+          font-weight: 300;
+          text-transform: capitalize;
+        }
+        &__p{
+          font-size: rem(12);
+        }
+        &__stats{
+          padding: rem(20) 0;
+          display: flex;
+          gap: rem(20);
+          flex-wrap: wrap;
+          justify-content: space-between;
+          // @include grid($min:150,$gap:20);
+          &__item{
+            @include flex($dir:column,$align:flex-start);
+            border: 1px solid #e3ebf6;
+            padding: rem(20);
+            border-radius: 10px;
+            &__icon{
+              padding: rem(10);
+              border-radius: 50%;
+              margin: auto;
+            }
+            &__middle{
+              &__no{
+                font-weight: 800;
+                font-size: rem(25);
+              }
+              &__title{
+                text-transform: capitalize;
+                font-weight: 800;
+              }
+            }
+            &__number{
+              display: flex;
+              // font-size: 12px;
+              font-weight: 700;
+              svg{
+                font-size: 15px;
+              }
+              span{
+                color: #a4abc5;
+                padding-left: rem(10);
+                font-weight: 500;
+                text-transform: capitalize;
+                font-size: rem(17);
+              }
+              &.pstv{
+                color: rgb(35, 225, 89);
+              }
+              &.ngtv{
+                color: $main__color;
+              }
+            }
+          }
+        }
+      }
+      &__chart{
+        
+      }
+    }
+    &__right{
+      flex: 4;
+    }
+  }
+}

@@ -1,15 +1,18 @@
 import MuiBreadcrumbs from '../Breadcrumbs/Breadcrumbs'
 import Form from 'react-bootstrap/Form';
 import {useRouter} from 'next/router'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Image from 'next/image';
 import { useState } from 'react';
-import getStripe from '../../utils/getStripe';
+import { stripeAction } from '../../store/orderSlice'
 
 function Checkout()
 {
+  const dispatch = useDispatch()
   const router = useRouter()
   const { products, total } = useSelector(state => state.products.cart)
+  const { session } = useSelector(state => state.order)
+
   const [shipping, setShipping] = useState(7)
   const [firstName,setFirstName] = useState('')
   const [lastName,setLastName] = useState('')
@@ -18,22 +21,53 @@ function Checkout()
   const [country, setCountry] = useState('')
   const [city, setCity] = useState('')
   const [postalCode, setPostalCode] = useState('')
-
+  const origin =
+    typeof window !== "undefined" && window.location.origin
+      ? window.location.origin
+      : "";
   const checkoutHandler = async e =>
   {
     e.preventDefault()
     const cartProducts = {products}
     // router.push('/payment')
-    const stripe = await getStripe()
-    const response = await fetch('/api/stripe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(cartProducts)
-    })
-    if (response.statusCode === 500) return;
-    const data = await response.json()
-    stripe.redirectToCheckout({sessionId:data.id})
+    // const stripe = await getStripe()
+    // const config = {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // };
+    //   await fetch('/api/stripe', {
+      //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: cartProducts
+    // })
+    // if (response.statusCode === 500) return;
+    // const data = await res.json()
+    dispatch(stripeAction(cartProducts))
+    // const data = axios.post(
+    //   `${origin}/api/stripe/`,
+    //   cartProducts,
+    //   config
+    // );
+
+    // const res = axios.post(`${origin}/api/stripe/`,cartProducts,config)
+    // console.log(res)
+    
+    // console.log(order)
+    // const stripe = await getStripe();
+    // stripe?.redirectToCheckout({ sessionId: order?.id });
+    // if (res.url)
+    // {
+    //   router.push(res.url)
+    // }
   }
+  if (session)
+  {
+    if (typeof window !== 'undefined')
+    localStorage.setItem('cartProducts', products)
+    router.push(session?.url)
+  }
+
   return (
     <div className='checkout'>
       <div className="container">

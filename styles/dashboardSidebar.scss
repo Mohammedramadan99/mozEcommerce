@@ -1,0 +1,115 @@
+.dashboard__sidebar{
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  &:hover{
+    ::-webkit-scrollbar {
+      width: rem(3);
+      transition: $speed_duration;
+    }
+  }
+    ::-webkit-scrollbar {
+      width: rem(0);
+    }
+  &__logo{
+    @include flex();
+    padding: rem(10) rem(20);
+    // border-bottom: $dashboard_border;
+    position: sticky;
+    top: 0;
+    height: rem(70);
+    background-color: #fff;
+    z-index: 1000;
+  }
+  &__parts{
+    padding-left: rem(10);
+    padding-right: rem(10);
+    overflow-y: scroll;
+    height: calc(100% - 70px);
+    &__singlePart{
+      padding-top: rem(20);
+      &__title{
+        padding-bottom: rem(10);
+        color: #999;
+        text-transform: capitalize;
+        font-weight: 500;
+        font-size: rem(13);
+      }
+      &__items{
+        padding-left: rem(10);
+        padding-right: rem(10);
+        &__item{
+          position: relative;
+          display: flex;
+          align-items: center;
+          margin-top: rem(5);
+          transition: $speed_duration;
+          padding: rem(10) 0;
+          cursor: pointer;
+          // &::before{
+          //   content: '';
+          //   position: absolute;
+          //   width: 0;
+          //   height: 0;
+          //   left: 0;
+          //   bottom: 0;
+          //   background-color: $main__color;
+          //   transition: $speed_duration;
+          //   z-index: -1;
+          //   opacity: 0;
+          // }
+          &:hover,&.active{
+            .dashboard__sidebar__parts__singlePart__items__item__name{
+              transform: translateX(.4rem);
+              color: $main__color;
+            }
+            .dashboard__sidebar__parts__singlePart__items__item__icon{
+              color: #fff !important;
+              &::before{
+                width: 100%;
+                height: 100%;
+                opacity: 1;
+              }
+            }
+            // &::before{
+            //   width:100%;
+            //   height: rem(2);
+            //   opacity: 1;
+            // }
+          }
+          &__name{
+            text-transform: capitalize;
+            margin-left: rem(10);
+            font-size: rem(15);
+            font-weight: 600;
+            transition: $speed_duration;
+          }
+          &__icon{
+            position: relative;
+            color: $main__color;
+            padding: rem(5);
+            @include flex();
+            transition: $speed_duration;
+            border-radius: 50%;
+            &::before{
+              content: "";
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 0;
+              height: 0;
+              transition: $speed_duration;
+              background-color: $main__color;
+              opacity: 0;
+              border-radius: 50%;
+              z-index: -1;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,181 @@
+@import './vars';
+@import './dashboardSidebar.scss';
+
+.dashboard{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  &__header{
+    font-size: rem(23);
+    font-weight: 700;
+    text-transform: capitalize;
+    padding: rem(20);
+    margin-bottom: rem(20);
+    border-radius: rem(7);
+    background-color: #fff;
+    color: $dark__color;
+  }
+  input{
+    background-color: $light_blue_bg;
+  }
+  &__sidebar{
+    flex: 3;
+  }
+  &__container{
+    position: relative;
+    top: 70px;
+    flex:12;
+    background-color: $light_blue_bg;
+    overflow: hidden;
+    min-height: calc(100vh - 70px);
+    height: 100%;
+    &__wrapper{
+      background-color: $light__color;
+      height: 100%;
+      padding: rem(20);
+    }
+    &__navbar{
+      position: fixed;
+      top: 0;
+      background-color: rgba(#fff,.7);
+      width: calc(100% - 247px);
+      left: 246px;
+      z-index: 1000;
+      padding: rem(15);
+      @include flex($justify:space-between);
+      border-bottom: $dashboard_border;
+      backdrop-filter: blur(5px);
+      &__search{
+        display: flex;
+        align-items: center;
+        column-gap: rem(10);
+        border: 2px solid $main__color;
+        border-radius: rem(20);
+        padding: rem(5);
+        input{
+          border: none;
+          border-radius: rem(20);
+          padding-left: rem(10);
+          font-size: rem(12);
+          color: $main__color;
+          font-weight: 600;
+          background-color: transparent;
+        }
+        &__icon{
+          svg{
+            font-size: rem(20);
+            color: $main__color;
+          }
+        }
+      }
+      &__links{
+        display: flex;
+        align-items: center;
+        &__link{
+          margin-left: rem(10);
+          margin-right: rem(10);
+          font-size: rem(20);
+          cursor: pointer;
+          svg{
+            transition: $speed_duration;
+          }
+          &:hover{
+            svg{
+              color: $main__color;
+            }
+          }
+        }
+      }
+    }
+    &__orders{
+      .pending, .dispatched, .delivered {
+        font-weight: 700;
+        padding: 0 rem(7) rem(1);
+        text-transform: capitalize;
+        border-radius: rem(5);
+        font-size: rem(12);
+        border-color: rgb(212, 194, 28);
+        border: 1px solid;
+      }
+      .pending{
+        background-color: rgba(224, 204, 24, 0.13);
+        color: rgb(212, 194, 28);
+      }
+      .dispatched{
+        background-color: rgb(224 24 24 / 13%);
+        color: rgb(227 21 21);
+      }
+      .delivered{
+        background-color: rgba(24, 117, 224, 0.13);
+        color: rgb(34, 98, 211);
+      }
+      .table__field{
+        &__deliveredBtn, &__dispatchedBtn{
+          color: #fff;
+          margin: 0 rem(10);
+          font-weight: 700;
+          padding: 0 rem(7);
+          text-transform: capitalize;
+          border-radius: rem(5);
+          font-size: rem(12);
+          @include flex();
+          cursor: pointer;
+          transition: $speed_duration;
+          &.hide{
+            cursor: not-allowed;
+            opacity: .5;
+          }
+        }
+        &__deliveredBtn{
+          border: 1px solid rgb(34, 98, 211);
+          color: rgb(34, 98, 211);
+          transition: $speed_duration;
+          &:hover:not(.hide){
+            background-color: rgb(34, 98, 211);
+            color: #fff;
+          }
+        }
+        &__dispatchedBtn{
+          border: 1px solid rgb(227 21 21);
+          color: rgb(227 21 21);
+          transition: $speed_duration;
+          &:hover:not(.hide){
+            background-color: rgb(227 21 21);
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+  .table__field{
+    display: flex;
+    &__icon{
+      cursor: pointer;
+      margin: 0 rem(30);
+    }
+  }
+  .MuiDataGrid-cell,.MuiDataGrid-columnHeaderTitleContainer{
+    justify-content: center;
+  }
+  .add__btn{
+    padding: 10px;
+    text-transform: capitalize;
+    border: 1px solid;
+    border-color: $main__color;
+    color: $main__color;
+    width: fit-content;
+    border-radius: 40px;
+    margin: 0 auto 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transform: scale(1);
+    transition: $speed_duration;
+    &:hover{
+      transform: scale(1.05);
+    }
+  }
+}

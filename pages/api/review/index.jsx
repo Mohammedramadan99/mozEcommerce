@@ -2,6 +2,7 @@ import nc from 'next-connect'
 import Product from '../../../Modal/ProductsModel'
 import db from '../../../utils/db/dbConnect'
 import { isAuth } from '../../../utils/auth'
+import Notification from '../../../Modal/NotificationsModal'
 const handler = nc()
 handler.use(isAuth).put(async (req, res) =>
 {
@@ -10,16 +11,21 @@ handler.use(isAuth).put(async (req, res) =>
   const user = req.user
   console.log(user)
   const review = {
-    user: { id: user._id, image: user.personalImage },
+    user: { ...user },
     name: req.user.name,
     rating: Number(rating),
     comment,
   };
   // console.log(review)
   const product = await Product.findById(productId); // find the product
-  
+  const notificationData = {
+    user,
+    title: `${user.name} reviewed  ${product?.name} with (${review.rating}) stars`,
+    content: `${review.comment}`
+  }
+  const notification = await Notification.create(notificationData)
   const isReviewed = product.reviews.find(
-    (rev) => rev.user.id.toString() === req.user._id.toString()
+    (rev) => rev?.user?._id === req.user._id.toString()
   ); // product OLD review before the NEW review
 
   if (isReviewed)

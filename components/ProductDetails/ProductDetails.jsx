@@ -177,7 +177,7 @@ function ProductDetails()
                   Customer reviews & ratings
                 </div>
                 <div className="productDetails__bottom__reviewsSection__reviews__ratingNum">
-                  <div className="productDetails__bottom__reviewsSection__reviews__ratingNum__num"> <span> {product?.ratings} </span> out of <span> 5 </span> </div>
+                    <div className="productDetails__bottom__reviewsSection__reviews__ratingNum__num"> <span> {product?.ratings.toFixed(1)} </span> out of <span> 5 </span> </div>
                   <div className="productDetails__bottom__reviewsSection__reviews__ratingNum__stars">
                     <Rating value={product?.ratings} readOnly precision={.5} size='small' />
                     ({product?.reviews.length} reviews)
@@ -187,7 +187,7 @@ function ProductDetails()
                   {product?.reviews.map(rev => (
                     <div key={rev._id} className="productDetails__bottom__reviewsSection__reviews__items__item">
                       <div className="productDetails__bottom__reviewsSection__reviews__items__item__img">
-                        {rev.user?.image?.url && <Image src={rev.user.image?.url} layout="fill" objectFit='contain' alt="img" />}
+                        {rev?.user?.personalImage?.url && <Image src={rev?.user?.personalImage?.url} layout="fill" objectFit='contain' alt="img" />}
                       </div>
                       <div className="productDetails__bottom__reviewsSection__reviews__items__item__content">
                         <div className="productDetails__bottom__reviewsSection__reviews__items__item__rating">

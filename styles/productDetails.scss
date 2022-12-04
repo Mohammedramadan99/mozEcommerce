@@ -190,18 +190,21 @@
 
           &__item{
             display: flex;
+            justify-content: space-between;
             padding: rem(20);
             border: 1px solid #eee;
             box-shadow: 0 0 35px 2px #eee;
             border-radius: rem(10);
             &__img{
-              flex:3;
+              // flex:3;
               position: relative;
-              width: 100%;
-              height: 100%;
+              width: 80px;
+              height: 80px;
+              border-radius: 50%;
+              overflow: hidden;
             }
             &__content{
-              flex:7;
+              // flex:7;
               &__name{
                 color: #999;
                 font-size: rem(14);

@@ -7,8 +7,6 @@ import { showCartComponent } from '../store/productsSlice'
 import { logoutAction } from '../store/usersSlice'
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-// import Image from 'next/image';
-// import { useRouter } from 'next/router';
 
 function NavBar()
 {
@@ -90,7 +88,8 @@ function NavBar()
             <a className='nav__profile'>
               <div className="nav__profile__img" >
                 {userAuth?.personalImage?.url ?
-                  <Image src={userAuth?.personalImage?.url} layout="fill" objectFit='contain' alt="img" /> :
+                  <Image src={userAuth?.personalImage?.url} layout="fill" objectFit="contain" alt="img" /> :
+                  // <img src='https://res.cloudinary.com/dtmjc8y9z/image/upload/v1669488287/avatars/x8u1g3mhfluvr4dnnbxi.jpg' alt="img" /> :
                   userAuth?.name && (
                     <div className='nav__profile__img__litter'> {userAuth.name[0]} </div>
                   )}
@@ -98,6 +97,7 @@ function NavBar()
             </a>
           </Link>
         )}
+
       </div>
     </nav>
   )

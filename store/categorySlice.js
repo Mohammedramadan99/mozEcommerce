@@ -42,7 +42,7 @@ export const createCategoryAction = createAsyncThunk(
 );
 
 //delete
-export const deleteCommentAction = createAsyncThunk(
+export const deleteCategoryAction = createAsyncThunk(
   "category/delete",
   async (commentId, { rejectWithValue, getState, dispatch }) => {
     //get user token
@@ -69,9 +69,37 @@ export const deleteCommentAction = createAsyncThunk(
   }
 );
 
-//fetch comment details
+// update
+export const updateCategoryAction = createAsyncThunk(
+  "category/update",
+  async (category, { rejectWithValue, getState, dispatch }) => {
+    //get user token
+    const user = process.browser && getState()?.users;
+    const { userAuth } = user;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userAuth?.token}`,
+      },
+    };
+    //http call
+    try {
+      const { data } = await axios.put(
+        `${origin}/api/category/${category.id}`,category.data,
+        config
+      );
+      return data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
+//fetch categories
 export const fetchCategoriesAction = createAsyncThunk(
-  "category/fetch-details",
+  "category/all",
   async (_, { rejectWithValue, getState, dispatch }) => {
     //get user token
     const user = process.browser && getState()?.users;
@@ -94,14 +122,49 @@ export const fetchCategoriesAction = createAsyncThunk(
   }
 );
 
+//fetch comment details
+export const fetchCategoryDetailsAction = createAsyncThunk(
+  "category/fetch-details",
+  async (id, { rejectWithValue, getState, dispatch }) => {
+    //get user token
+    const user = process.browser && getState()?.users;
+    const { userAuth } = user;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userAuth?.token}`,
+      },
+    };
+    //http call
+    try {
+      const { data } = await axios.get(`${origin}/api/category/${id}`, config);
+      return data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
 const categorySlices = createSlice({
   name: "category",
   initialState: {
-    loading:false,
+    loading: false,
     categories: [],
-    categoryCreated:{},
+    categoryCreated: {},
     appErr: "",
-    serverErr:"",
+    serverErr: "",
+  },
+  reducers: {
+    reset: (state) => {
+      state.appErr = null;
+      state.serverErr = null;
+      state.isCreated = false;
+      state.addedReview = false;
+      state.isDeleted = false;
+      state.isUpdated = false;
+    },
   },
   extraReducers: (builder) => {
     //create
@@ -122,16 +185,16 @@ const categorySlices = createSlice({
     });
 
     //delete
-    builder.addCase(deleteCommentAction.pending, (state, action) => {
+    builder.addCase(deleteCategoryAction.pending, (state, action) => {
       state.loading = true;
     });
-    builder.addCase(deleteCommentAction.fulfilled, (state, action) => {
+    builder.addCase(deleteCategoryAction.fulfilled, (state, action) => {
       state.loading = false;
       state.commentDeleted = action?.payload;
       state.appErr = null;
       state.serverErr = null;
     });
-    builder.addCase(deleteCommentAction.rejected, (state, action) => {
+    builder.addCase(deleteCategoryAction.rejected, (state, action) => {
       state.loading = false;
       state.commentCreated = null;
       state.appErr = action?.payload?.message;
@@ -142,7 +205,7 @@ const categorySlices = createSlice({
       state.isUpdate = true;
     });
 
-    //fetch categories
+    // all categories
     builder.addCase(fetchCategoriesAction.pending, (state, action) => {
       state.loading = true;
     });
@@ -154,11 +217,43 @@ const categorySlices = createSlice({
     });
     builder.addCase(fetchCategoriesAction.rejected, (state, action) => {
       state.loading = false;
-      state.categories = null;
+      state.categoryDetails = null;
+      state.appErr = action?.payload?.message;
+      state.serverErr = action?.error?.message;
+    });
+    //fetch category Details
+    builder.addCase(fetchCategoryDetailsAction.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(fetchCategoryDetailsAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.categoryDetails = action?.payload;
+      state.appErr = null;
+      state.serverErr = null;
+    });
+    builder.addCase(fetchCategoryDetailsAction.rejected, (state, action) => {
+      state.loading = false;
+      state.categoryDetails = null;
+      state.appErr = action?.payload?.message;
+      state.serverErr = action?.error?.message;
+    });
+    //fetch category Details
+    builder.addCase(updateCategoryAction.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(updateCategoryAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.isUpdated = true;
+      state.appErr = null;
+      state.serverErr = null;
+    });
+    builder.addCase(updateCategoryAction.rejected, (state, action) => {
+      state.loading = false;
+      state.categoryDetails = null;
       state.appErr = action?.payload?.message;
       state.serverErr = action?.error?.message;
     });
   },
 });
-
+export const {reset} = categorySlices.actions
 export default categorySlices.reducer;

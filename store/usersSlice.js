@@ -82,6 +82,34 @@ export const userProfileAction = createAsyncThunk(
     }
   }
 );
+// delete user
+export const deleteUserAction = createAsyncThunk(
+  "user/delete",
+  async (id, { rejectWithValue, getState, dispatch }) => {
+    //get user token
+    const user = getState().users;
+    const { userAuth } = user;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userAuth?.token}`,
+      },
+    };
+    
+    //http call
+    try {
+      const { data } = await axios.delete(
+        `${origin}/api/users/${id}`,
+        config
+      );
+      return data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
 
 // Follow
 export const followUserAction = createAsyncThunk(
@@ -445,6 +473,7 @@ const usersSlices = createSlice({
       state.profilePhoto = null;
       state.registered = null;
       state.loggedOut = false;
+      state.isDeleted = false;
     },
   },
   extraReducers: (builder) => {
@@ -511,7 +540,7 @@ const usersSlices = createSlice({
     });
     builder.addCase(fetchUserDetailsAction.fulfilled, (state, action) => {
       state.loading = false;
-      state.userDetails = action?.payload;
+      state.userDetails = action?.payload.user;
       state.appErr = null;
       state.serverErr = null;
     });
@@ -567,7 +596,7 @@ const usersSlices = createSlice({
     });
     builder.addCase(fetchUsersAction.fulfilled, (state, action) => {
       state.loading = false;
-      state.usersList = action?.payload;
+      state.usersList = action?.payload.users;
       state.appErr = null;
       state.serverErr = null;
     });
@@ -724,6 +753,21 @@ const usersSlices = createSlice({
     });
     builder.addCase(uploadProfilePhototAction.rejected, (state, action) => {
       state.appErr = action?.payload || action.payload?.error?.message;
+      state.serverErr = action?.error?.message;
+      state.loading = false;
+    });
+    // delete
+    builder.addCase(deleteUserAction.pending, (state, action) => {
+      state.loading = false;
+    });
+    builder.addCase(deleteUserAction.fulfilled, (state, action) => {
+      state.isDeleted = true;
+      state.loading = false;
+      state.appErr = null;
+      state.serverErr = null;
+    });
+    builder.addCase(deleteUserAction.rejected, (state, action) => {
+      state.appErr = action?.payload;
       state.serverErr = action?.error?.message;
       state.loading = false;
     });

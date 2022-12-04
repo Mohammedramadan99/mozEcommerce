@@ -64,8 +64,8 @@ export const updateproductAction = createAsyncThunk(
     try {
       //http call
       const { data } = await axios.put(
-        `${origin}/api/products/${product?.id}`,
-        product,
+        `${origin}/api/product/${product?.id}`,
+        product.props,
         config
       );
       //dispatch
@@ -93,11 +93,11 @@ export const deleteproductAction = createAsyncThunk(
     try {
       //http call
       const { data } = await axios.delete(
-        `${origin}/api/products/${productId}`,
+        `${origin}/api/product/${productId}`,
         config
       );
       //dispatch
-      dispatch(resetproductDelete());
+      // dispatch(resetproductDelete());
       return data;
     } catch (error) {
       if (!error?.response) throw error;
@@ -113,7 +113,7 @@ export const fetchProductsAction = createAsyncThunk(
       //http call
       const { data } = await axios.get(`${origin}/api/product`);
       //dispatch
-      dispatch(resetproductDelete());
+      // dispatch(resetproductDelete());
       return data;
     } catch (error) {
       if (!error?.response) throw error;
@@ -299,6 +299,8 @@ const productSlice = createSlice({
       state.serverErr = null;
       state.isCreated = false;
       state.addedReview = false;
+      state.isDeleted = false;
+      state.isUpdated = false;
     },
     showCartComponent: (state, action) => {
       state.cart.showCart = !state.cart.showCart;
@@ -435,17 +437,17 @@ const productSlice = createSlice({
     builder.addCase(updateproductAction.pending, (state, action) => {
       state.loading = true;
     });
-    builder.addCase(resetproductEdit, (state, action) => {
-      state.isUpdated = true;
-    });
+    // builder.addCase(resetproductEdit, (state, action) => {
+    //   state.isUpdated = true;
+    // });
     builder.addCase(updateproductAction.fulfilled, (state, action) => {
-      state.productUpdated = action?.payload;
+      state.isUpdated = true;
       state.loading = false;
       state.appErr = null;
       state.serverErr = null;
-      state.isUpdated = false;
     });
     builder.addCase(updateproductAction.rejected, (state, action) => {
+      state.isUpdated = false;
       state.loading = false;
       state.appErr = action?.payload?.message;
       state.serverErr = action?.error?.message;
@@ -459,8 +461,7 @@ const productSlice = createSlice({
       state.isDeleted = true;
     });
     builder.addCase(deleteproductAction.fulfilled, (state, action) => {
-      state.productUpdated = action?.payload;
-      state.isDeleted = false;
+      state.isDeleted = true;
       state.loading = false;
       state.appErr = null;
       state.serverErr = null;

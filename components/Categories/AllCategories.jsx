@@ -94,7 +94,7 @@ function AllCategories()
               <Link href={`/products?category=${item?.title}`}>
                 <a className="allCategories__items__item">
                   <div className="allCategories__items__item__img">
-                    <Image src={item.images[0].url} layout="fill" objectFit="contain" alt="categoryImg" />
+                    <Image src={item?.images[0]?.url} layout="fill" objectFit="contain" alt="categoryImg" />
                   </div>
                   <div className="allCategories__items__item__info">
                     <div className="allCategories__items__item__info__name">

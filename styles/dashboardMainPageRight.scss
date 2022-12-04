@@ -1,0 +1,50 @@
+$box_radius: rem(10);
+.dashboard__container__content__mainPage__right{
+  &__transactions{
+    // padding: rem(20);
+    // background-color: $dark__color;
+    // color: #fff;
+    @include dashboardBox();
+    &__title{
+    @include dashboardBoxHeader();
+      // color: #edf2f4;
+    }
+    &__orders{
+      &__item{
+        padding: rem(10) rem(20);
+        text-transform: capitalize;
+        margin-top: rem(10);
+        margin-bottom: rem(10);
+        border-left: 2px solid #fff;
+        @include flex($justify:space-between);
+        
+        // column-gap: rem(10);
+        &__total{
+        }
+        &__time{
+          text-transform: lowercase;
+          font-size: rem(12);
+        }
+      }
+    }
+  }
+  &__allTime{
+    @include dashboardBox();
+    &__title{
+      @include dashboardBoxHeader();
+    }
+    &__items{
+      &__item{
+        @include flex($justify:space-between);
+        padding: rem(10) rem(20);
+        text-transform: capitalize;
+        &__name{
+  
+        }
+        &__number{
+  
+        }
+      }
+    }
+  }
+}

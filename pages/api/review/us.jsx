@@ -3,6 +3,7 @@ import Product from '../../../Modal/ProductsModel'
 import db from '../../../utils/db/dbConnect'
 import { isAuth } from '../../../utils/auth'
 import ReviewUs from '../../../Modal/reviewUs'
+import Notification from '../../../Modal/NotificationsModal'
 const handler = nc()
 
 handler.get(async (req, res) =>
@@ -33,6 +34,13 @@ handler.use(isAuth).post(async (req, res) =>
     const review = req.body
     const reviewData = { user , ...review }
     const result = await ReviewUs.create(reviewData)  
+    const notificationData = {
+      user,
+      title: `${user.name} reviewed our website with ${review.rating} stars `,
+      content: `${review.comment}`
+    }
+    const notification = await Notification.create(notificationData)
+    
     res.status(200).json({
       success: true,
       review: result

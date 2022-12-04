@@ -1,8 +1,5 @@
 import Head from "next/head";
 import { useSelector } from "react-redux";
-import Cart from "../Cart/Cart";
-import Footer from "../Footer";
-import dynamic from "next/dynamic";
 import Dashboard from "../Admin/Dashboard";
 
 export default function DashboardLayout({ title, children })

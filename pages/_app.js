@@ -4,13 +4,7 @@ import { wrapper } from "../store/store";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/style.scss";
 import { useRouter } from "next/router";
-import DashboardLayout from "../components/Layouts/dashboardLayout";
-// import {Elements} from '@stripe/react-stripe-js';
-// import {loadStripe} from '@stripe/stripe-js';
-
-// const stripePromise = loadStripe(
-//   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-// );
+const DashboardLayout = dynamic(() => import("../components/Layouts/DashboardLayout"));
 const App = ({ Component, ...rest}) =>
 {
   const { store, props } = wrapper.useWrappedStore(rest)

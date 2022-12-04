@@ -4,10 +4,6 @@ import Cart from "../Cart/Cart";
 import Footer from "../Footer";
 import dynamic from "next/dynamic";
 import Dashboard from "../Admin/Dashboard";
-const Navbar = dynamic(
-  () => import('../Admin/Navbar'),
-  { ssr: false }
-)
 
 export default function DashboardLayout({ title, children })
 {

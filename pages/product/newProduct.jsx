@@ -1,4 +1,4 @@
-import NewProduct from "../../components/Admin/NewProduct/NewProduct";
+import NewProduct from "../../components/Admin/products/NewProduct";
 
 const index = () =>
 {

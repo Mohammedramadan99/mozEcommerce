@@ -1,10 +1,13 @@
-import Payment from "../components/Payment/Payment"
+// import Payment from "../components/Payment/Payment"
 
 function payment()
 {
 
   return (
-    <Payment/>
+    // <Payment/>
+    <>
+      payment
+    </>
   )
 }
 

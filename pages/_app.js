@@ -4,7 +4,9 @@ import { wrapper } from "../store/store";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/style.scss";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
 const DashboardLayout = dynamic(() => import("../components/Layouts/DashboardLayout"));
+
 const App = ({ Component, ...rest}) =>
 {
   const { store, props } = wrapper.useWrappedStore(rest)

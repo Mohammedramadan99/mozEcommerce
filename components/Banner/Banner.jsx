@@ -15,7 +15,7 @@ function Banner()
             burger?
           </div>
           <div className="banner__content__img">
-            <Image src={bannerImg} layout="fill" objectFit='contain' alt="bannerImg" />
+            <Image src="https://res.cloudinary.com/dtmjc8y9z/image/upload/v1668378028/ecommerce/xbbudk0hjtuj1p7l2c8i.png" layout="fill" objectFit='contain' alt="bannerImg" />
           </div>
           <div className="banner__content__regTxt">
             yes, please! <span>mmmmmm....</span>

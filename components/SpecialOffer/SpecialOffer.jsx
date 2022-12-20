@@ -4,8 +4,7 @@ import { useSelector } from 'react-redux'
 function SpecialOffer()
 {
   const { allProducts } = useSelector(state => state?.products?.productsList)
-  const specialProduct = allProducts?.find(p => p._id === '635a54c60dd49b3e0493dcbb')
-  console.log(specialProduct)
+  const specialProduct = allProducts?.find(p => p._id === '63717ad9fd6daaea663d2589')
   return (
     <div className='specialOffer'>
       <div className="container">
@@ -28,7 +27,8 @@ function SpecialOffer()
         </div>
         <div className="specialOffer__right">
           <div className="specialOffer__right__img">
-            {specialProduct?.images[0]?.url && <Image src='https://res.cloudinary.com/dtmjc8y9z/image/upload/v1668381401/ecommerce/g3bgyk9qmbjgdshf6mxw.png' layout="fill" objectFit='contain' alt="img" />}
+            {specialProduct?.images[0]?.url && <Image src={specialProduct?.images[0]?.url} layout="fill" objectFit='contain' alt="img" />}
+            
           </div>
         </div>
       </div>

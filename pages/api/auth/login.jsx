@@ -22,10 +22,21 @@ handler.post(async (req, res) =>
   try {
     const { email, password } = req.body;
     //check if user exists
+    console.log("password",password)
     const userFound = await User.findOne({ email }).select('+password');
-    console.log(userFound.password)
-    const comparedPassword = await bcrypt.compare(password, userFound.password);
-    console.log(comparedPassword)
+    if (!userFound)
+    {
+      res.status(401).json({
+        message: "email or password not found"
+      })
+    }
+    const comparedPassword = await bcrypt.compare(password, userFound?.password);
+    if (!comparedPassword)
+    {
+      res.status(401).json({
+        message: "email or password not found"
+      })
+    }
     //check if blocked
     if (userFound && comparedPassword)
     {

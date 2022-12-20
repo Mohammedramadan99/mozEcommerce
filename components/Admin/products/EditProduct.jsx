@@ -40,7 +40,7 @@ function EditProduct()
   }
   useEffect(() => {
     dispatch(fetchCategoriesAction())
-    // ? that is the best method to show the product details on the form firstly before editing the details
+    // ? that is the best method to show the product details firstly before editing the details
     let product = allProducts?.filter(p => p._id === id) // ? find the product
     product = product[0] // ? because filter returns the result in an array 
     setProductDetails(product) // ? then put the product in the productDetails state

@@ -78,6 +78,7 @@ function NavBar()
           </a>
         </Link>
         {/* {userAuth?.personalImage?.url || userAuth?.name && ( */}
+        {userAuth?.personalImage?.url && (
           <Link href="#">
             <a className='nav__profile'>
               <div className="nav__profile__img" >
@@ -93,6 +94,7 @@ function NavBar()
               </div>
             </a>
           </Link>
+        )}
         {/* )} */}
 
       </div>

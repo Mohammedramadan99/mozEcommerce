@@ -26,10 +26,11 @@ import 'swiper/css/navigation';
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import ProductsSlider from '../Products/ProductsSlider'
+import { Spinner } from 'react-bootstrap'
 function ProductDetails()
 {
   const dispatch = useDispatch()
-  const { productDetails: product,addedReview ,productsList:{products}} = useSelector(state => state.products)
+  const { productDetails: product,loading,addedReview ,productsList:{products}} = useSelector(state => state.products)
   const { userAuth } = useSelector(state => state.users)
   const [quantity, setQuantity] = useState(0)
   const [comment, setComment] = useState("");
@@ -82,44 +83,60 @@ function ProductDetails()
   console.log(barActive)
   return (
     <div className='productDetails'>
-      <div className="container">
-        <div className="productDetails__left">
-          <div className="productDetails__left__img">
-            {product?.images.length > 0 && <Image src={product?.images[0]?.url} layout="fill" objectFit='contain' alt="productImg" />}
-          </div>
+      {loading ? (
+        <div
+          className="spinner"
+          style={{
+            width: "100%",
+            height: "100vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Spinner animation="border" variant="danger" />
         </div>
-        <div className="productDetails__right">
-          <div className="productDetails__right__name"> {product?.name} </div>
-          <div className="productDetails__right__rating">
-            <div className="productDetails__right__rating__stars">
-              <Rating value={product?.ratings} readOnly precision={.5} /> 
+      ) : (
+        <>
+          <div className="container">        
+            <div className="productDetails__left">
+              <div className="productDetails__left__img">
+                {product?.images.length > 0 && <Image src={product?.images[0]?.url} layout="fill" objectFit='contain' alt="productImg" />}
+              </div>
             </div>
-            <div className="productDetails__right__rating__reviewsNum"> {product?.numOfReviews < 1 || product?.numOfReviews === 1 ? `( ${product?.numOfReviews} review )` : product?.numOfReviews > 1 && `( ${product?.numOfReviews} reviews )` }  </div>
-            
+            <div className="productDetails__right">
+              <div className="productDetails__right__name"> {product?.name} </div>
+              <div className="productDetails__right__rating">
+                <div className="productDetails__right__rating__stars">
+                  <Rating value={product?.ratings} readOnly precision={.5} /> 
+                </div>
+                <div className="productDetails__right__rating__reviewsNum"> {product?.numOfReviews < 1 || product?.numOfReviews === 1 ? `( ${product?.numOfReviews} review )` : product?.numOfReviews > 1 && `( ${product?.numOfReviews} reviews )` }  </div>
+              </div>
+              <div className="productDetails__right__price"> {product?.price}$ </div>
+              <div className="productDetails__right__desc">
+                {product?.description}
+              </div>
+              <div className="productDetails__right__quantity">
+                <div className="productDetails__right__quantity__icon" onClick={() => ChangeQuantity('minus')}>
+                  <ArrowLeftOutlinedIcon  />
+                </div>
+                <p> {quantity} </p>
+                <div className="productDetails__right__quantity__icon" onClick={() => ChangeQuantity('plus')}>
+                  <ArrowRightOutlinedIcon  />
+                </div>
+              </div>
+              <div className="productDetails__right__btns">
+                <div className="productDetails__right__btns__btn main__btn" onClick={addToCartHandler}>
+                  add to cart
+                </div>
+                <div className="productDetails__right__btns__btn " onClick={submitReviewToggle}>
+                  add a review
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="productDetails__right__price"> {product?.price}$ </div>
-          <div className="productDetails__right__desc">
-            {product?.description}
-          </div>
-          <div className="productDetails__right__quantity">
-            <div className="productDetails__right__quantity__icon" onClick={() => ChangeQuantity('minus')}>
-              <ArrowLeftOutlinedIcon  />
-            </div>
-            <p> {quantity} </p>
-            <div className="productDetails__right__quantity__icon" onClick={() => ChangeQuantity('plus')}>
-              <ArrowRightOutlinedIcon  />
-            </div>
-          </div>
-          <div className="productDetails__right__btns">
-            <div className="productDetails__right__btns__btn main__btn" onClick={addToCartHandler}>
-              add to cart
-            </div>
-            <div className="productDetails__right__btns__btn " onClick={submitReviewToggle}>
-              add a review
-            </div>
-          </div>
-        </div>
-      </div>
+        </>
+      )}
       <Dialog
         aria-labelledby="simple-dialog-title"
         open={open}

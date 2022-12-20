@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { Provider} from "react-redux";
+import { Provider, useSelector} from "react-redux";
 import { wrapper } from "../store/store";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/style.scss";
@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 // const DashboardLayout = dynamic(() => import("../components/Layouts/DashboardLayout"));
 import DashboardLayout from '../components/Layouts/DashboardLayout'
 import MainLayout from "../components/Layouts/MainLayout";
+import { Spinner } from "react-bootstrap";
 // import {Elements} from '@stripe/react-stripe-js';
 // import {loadStripe} from '@stripe/stripe-js';
 
@@ -19,11 +20,11 @@ const App = ({ Component, ...rest}) =>
   const { store, props } = wrapper.useWrappedStore(rest)
   const router = useRouter()
   
+
   return (
     <Provider store={store}>
       {/* <Elements stripe={stripePromise}> */}
       {router.asPath === "/dashboard" ? ( // ! don't make it with === 3 equals : because it will work only if the link = /dashboard ---- but if equal '/dashboard/products' it will not work good .. so the sidebar and nav will not come
-        
         <DashboardLayout>
           <Component {...props.pageProps} />
         </DashboardLayout>

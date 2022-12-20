@@ -28,8 +28,7 @@ function SpecialOffer()
         </div>
         <div className="specialOffer__right">
           <div className="specialOffer__right__img">
-            {specialProduct?.images[0]?.url && <Image src={specialProduct?.images[0]?.url} layout="fill" objectFit='contain' alt="img" />}
-            
+            {specialProduct?.images[0]?.url && <Image src='https://res.cloudinary.com/dtmjc8y9z/image/upload/v1668381401/ecommerce/g3bgyk9qmbjgdshf6mxw.png' layout="fill" objectFit='contain' alt="img" />}
           </div>
         </div>
       </div>

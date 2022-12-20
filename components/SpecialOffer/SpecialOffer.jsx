@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
 function SpecialOffer()
@@ -24,16 +25,17 @@ function SpecialOffer()
           </div>
           <div className="specialOffer__left__price">
             {/* ${specialProduct?.price} */}
-            $ 25
+            $25
           </div>
-          <div className="specialOffer__left__btn">
-            add to cart
-          </div>
+          <Link href="product/63717ad9fd6daaea663d2589">
+            <a className="specialOffer__left__btn">
+              more details
+            </a>
+          </Link>
         </div>
         <div className="specialOffer__right">
           <div className="specialOffer__right__img">
             <Image src='https://res.cloudinary.com/dtmjc8y9z/image/upload/v1668381401/ecommerce/g3bgyk9qmbjgdshf6mxw.png' layout="fill" objectFit='contain' alt="img" />
-            
           </div>
         </div>
       </div>

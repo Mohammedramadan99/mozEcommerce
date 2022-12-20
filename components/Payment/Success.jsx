@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useSWR from 'swr';
 import {createOrderAction} from '../../store/orderSlice'
-
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 function Success()
 {
   const dispatch = useDispatch()
@@ -44,7 +44,14 @@ function Success()
   
   // console.log(JSON.parse(cart))
   return (
-    <div></div>
+    <div className='success'>
+      <p>
+        payment succeeded 
+      </p>
+      <div className="success__icon">
+        <CheckCircleOutlineIcon/>
+      </div>
+    </div>
   )
 }
 

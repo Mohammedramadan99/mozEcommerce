@@ -58,21 +58,21 @@
     &__price{
       font-size: rem(40);
       font-weight: 100;
+      margin-bottom: rem(30);
     }
     &__btn{
-      margin: rem(30) auto;
       padding: rem(10) rem(20);
       text-transform: capitalize;
       border: 2px solid $main__color;
       width: fit-content;
-      color: $main__color;
+      color: $main__color !important;
       font-weight: 600;
       border-radius: rem(30);
       cursor: pointer;
       transition: $speed_duration;
       &:hover{
         background-color: $main__color;
-        color: $light__color;
+        color: $light__color !important;
       }
     }
   }

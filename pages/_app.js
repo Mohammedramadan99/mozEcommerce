@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import DashboardLayout from '../components/Layouts/DashboardLayout'
 import MainLayout from "../components/Layouts/MainLayout";
 import { Spinner } from "react-bootstrap";
+import Note from "../components/Layouts/Note";
 // import {Elements} from '@stripe/react-stripe-js';
 // import {loadStripe} from '@stripe/stripe-js';
 
@@ -24,6 +25,7 @@ const App = ({ Component, ...rest}) =>
   return (
     <Provider store={store}>
       {/* <Elements stripe={stripePromise}> */}
+      <Note />
       {router.asPath === "/dashboard" ? ( // ! don't make it with === 3 equals : because it will work only if the link = /dashboard ---- but if equal '/dashboard/products' it will not work good .. so the sidebar and nav will not come
         <DashboardLayout>
           <Component {...props.pageProps} />

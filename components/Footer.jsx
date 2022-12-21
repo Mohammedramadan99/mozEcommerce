@@ -88,7 +88,7 @@ function Footer() {
         </div>
       </div>
       <div className="footer__copyright">
-        copyright ;&copy moz | mern responsive theme. all rights reserved
+        copyright &#169;	moz market created by ❤️
       </div>
     </div>
   )

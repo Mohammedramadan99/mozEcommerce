@@ -82,8 +82,8 @@ function NavBar()
           <Link href="#">
             <a className='nav__profile'>
               <div className="nav__profile__img" >
-                <div className="" style={{width:"80px",height:"80px",borderRadius:"50%"}}>
-                  <Image src={userAuth?.personalImage?.url} layout="fill" objectFit="contain" alt="img" /> :
+                <div className="" style={{width:"80px",height:"80px",borderRadius:"50%",overflow:"hidden"}}>
+                  <Image src={userAuth?.personalImage?.url} layout="fill" objectFit="cover" style={{borderRadius:"50%"}} alt="img" /> :
                 </div>
                 {/* {userAuth?.personalImage?.url ?
                   // <Image src={userAuth?.personalImage?.url} layout="fill" objectFit="contain" alt="img" /> :

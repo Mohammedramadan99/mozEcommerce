@@ -12,7 +12,8 @@
   &__header{
     position: relative;
     width: 100%;
-    height: rem(150);
+    height: 100%;
+    padding: rem(20) 0;
     background: url(../public/food/bg/bg_4.jpg) center center no-repeat fixed;
     background-size: cover;
     margin-bottom: rem(30);
@@ -64,7 +65,7 @@
     z-index: 1000;
     padding-right:rem(30) ;
     flex: 3;
-    height:100vh; // i put that beacuse without it -- sidebar sticky wouldnot work -- so you have to put the height
+    height:100%; // i put that beacuse without it -- sidebar sticky wouldnot work -- so you have to put the height
     &__filteredProps{
       @include flex();
       flex-wrap: wrap;

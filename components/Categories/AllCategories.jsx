@@ -60,7 +60,7 @@ function AllCategories()
   // ])
   useEffect(() => {
     dispatch(fetchCategoriesAction())
-  }, [])
+  }, [dispatch])
   
   return (
     <div className='allCategories'>
@@ -90,7 +90,7 @@ function AllCategories()
           virtual
         >
           {categories?.map(item => (
-            <SwiperSlide key={item?.id}>
+            <SwiperSlide key={item?._id}>
               <Link href={`/products?category=${item?.title}`}>
                 <a className="allCategories__items__item">
                   <div className="allCategories__items__item__img">

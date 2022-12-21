@@ -3,6 +3,9 @@
 .productDetails{
   &>.container{
     @include grid($min:400,$gap:30);
+    @media (max-width: 400px) {
+      @include grid($min: 200, $gap: 10);
+    }
   }
     .swiper {
       padding-top: rem(5);
@@ -116,8 +119,9 @@
           display: flex;
           align-items: center;
           margin: rem(20) 0;
-      
+          flex-wrap: wrap;
           &__link {
+            flex: 1;
             position: relative;
             margin-left: rem(10);
             margin-right: rem(10);
@@ -167,6 +171,9 @@
       &__reviews{
         &__header{
           font-size: rem(30);
+          @media (max-width: 400px) {
+              font-size: rem(25);
+            }
         }
         &__ratingNum{
           margin-bottom: rem(10);
@@ -174,8 +181,11 @@
           &__num{
             font-weight: 800;
             &>span{
-            font-weight: 400;
+              font-weight: 400;
               font-size: rem(100);
+              @media (max-width: 400px) {
+                font-size: rem(50);
+              }
             }
           }
           &__stars{
@@ -186,8 +196,10 @@
         }
         &__items{
           @include grid($min:200);
+          @media (max-width: 400px) {
+            @include grid($min: 150);
+          }
           align-items: start;
-
           &__item{
             display: flex;
             justify-content: space-between;

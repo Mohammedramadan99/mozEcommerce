@@ -14,7 +14,8 @@ function Categories()
             <a className="categories__items__item">
               <div className="categories__items__item__name"> {cat?.title} </div>
               <div className="categories__items__item__img">
-                <Image src={cat?.images[0]?.url} layout="fill" objectFit='contain' alt="catImg"/>
+                {cat?.images[0]?.url && <Image src={cat?.images[0]?.url} layout="fill" objectFit='contain' alt="cImg" />}
+                
               </div>
             </a>
           </Link>

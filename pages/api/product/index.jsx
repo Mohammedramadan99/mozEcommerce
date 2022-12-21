@@ -5,7 +5,6 @@ import cloudinary from "cloudinary"
 
 import Product from "../../../Modal/ProductsModel"
 import APIFeatures from '../../../utils/ApiFeatures';
-import { postImgResize, photoUpload } from '../../../utils/uploadingImg'
 // import AllProducts from '../../../components/db'
 cloudinary.config({
   cloud_name: 'dtmjc8y9z',

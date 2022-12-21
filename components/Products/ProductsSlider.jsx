@@ -44,7 +44,7 @@ function ProductsSlider({products})
           }}
         >
           {products?.map(p => (
-          <SwiperSlide key={p?.id}>
+          <SwiperSlide key={p?._id}>
             <Link href={`/product/${p?._id}`} >
               <a className="productsSlider__items__item">
                 <div className="productsSlider__items__item__imgWrapper">

@@ -1,6 +1,6 @@
 @import './vars';
 .cart{
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -26,6 +26,9 @@
     flex-direction: column;
     animation: translateLeft 1s linear;
     overflow: hidden;
+    @media (max-width: 500px) {
+      width: 90%;
+    }
     &__emptyCart{
       @include flex($dir:column);
       &__icon{

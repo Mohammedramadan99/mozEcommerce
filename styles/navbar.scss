@@ -1,7 +1,7 @@
 .nav{
   padding-top: rem(10);
   padding-bottom: rem(10);
-  height: rem(80);
+  height: 100%;
   min-height: rem(80);
   @include flex();
   position: sticky;
@@ -22,8 +22,9 @@
     height: 100%;
   }
   &__links{
-    flex: 1;
+    // flex: 1;
     @include flex();
+    flex-wrap: wrap;
     &__link{
       position: relative;
       padding-left: rem(10);

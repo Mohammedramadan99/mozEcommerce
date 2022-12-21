@@ -4,6 +4,9 @@
   color: $light__color;
   &__items{
     @include grid($min: 300);
+    @media (max-width: 400px) {
+      @include grid($min: 200, $gap: 10);
+    }
     &__item{
       @include flex($align:center);
       border: 2px solid #fff;

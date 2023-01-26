@@ -26,7 +26,7 @@ const App = ({ Component, ...rest}) =>
     <Provider store={store}>
       {/* <Elements stripe={stripePromise}> */}
       <Note />
-      {router.asPath === "/dashboard" ? ( // ! don't make it with === 3 equals : because it will work only if the link = /dashboard ---- but if equal '/dashboard/products' it will not work good .. so the sidebar and nav will not come
+      {router.asPath.startsWith("/dashboard") ? ( // ! don't make it with === 3 equals : because it will work only if the link = /dashboard ---- but if equal '/dashboard/products' it will not work good .. so the sidebar and nav will not come
         <DashboardLayout>
           <Component {...props.pageProps} />
         </DashboardLayout>

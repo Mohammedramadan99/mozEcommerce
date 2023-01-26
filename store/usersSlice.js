@@ -492,7 +492,7 @@ const usersSlices = createSlice({
     });
     builder.addCase(registerUserAction.rejected, (state, action) => {
       state.loading = false;
-      state.appErr = action?.payload;
+      state.appErr = action?.payload?.message;
       state.serverErr = action?.error?.message;
       state.registered = false;
     });
@@ -660,7 +660,7 @@ const usersSlices = createSlice({
       state.loggedOut = false;
     });
     builder.addCase(loginUserAction.rejected, (state, action) => {
-      state.appErr = action?.payload;
+      state.appErr = action?.payload.message;
       state.serverErr = action?.error?.message;
       state.loading = false;
     });

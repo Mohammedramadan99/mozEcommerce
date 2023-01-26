@@ -31,16 +31,16 @@ function Sidebar()
       part:'Three'
     },
     
-    {
-      title: 'service',
-      items: [{ name: 'system health', icon: <SettingsSystemDaydreamOutlinedIcon /> }, { name: 'logs', icon: <PsychologyOutlinedIcon /> }, { name: 'setting', icon: <SettingsApplicationsIcon /> }],
-      part:'Four'
-    },
-    {
-      title: 'user',
-      items: [{ name: 'profile', icon: <AccountCircleOutlinedIcon /> }, { name: 'logout', icon: <ExitToAppIcon /> }],
-      part:'Five'
-    },
+    // {
+    //   title: 'service',
+    //   items: [{ name: 'system health', icon: <SettingsSystemDaydreamOutlinedIcon /> }, { name: 'logs', icon: <PsychologyOutlinedIcon /> }, { name: 'setting', icon: <SettingsApplicationsIcon /> }],
+    //   part:'Four'
+    // },
+    // {
+    //   title: 'user',
+    //   items: [{ name: 'profile', icon: <AccountCircleOutlinedIcon /> }, { name: 'logout', icon: <ExitToAppIcon /> }],
+    //   part:'Five'
+    // },
   ]
   
   return (
@@ -56,7 +56,9 @@ function Sidebar()
             </div>
             <div className={`dashboard__sidebar__parts__singlePart__items`}>
               {item.items.map((link,i) => (
-                <Link href={link.name === 'dashboard' ? `/dashboard` : `/dashboard/${link?.name}`} key={i}>
+                <Link 
+                href={link.name === 'dashboard' ? `/dashboard` : link.name === 'status' || link.name === 'notifications' ?  `/dashboard` : `/dashboard/${link?.name}`}
+                key={i}>
                   <a className={`dashboard__sidebar__parts__singlePart__items__item`}>
                     <div className={`dashboard__sidebar__parts__singlePart__items__item__icon`}>
                       {link.icon}

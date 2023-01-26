@@ -28,11 +28,13 @@ const userSchema = new mongoose.Schema(
     personalImage: {
       public_id: {
         type: String,
-        require: true,
+        required: [true, "Please select an image"],
+        
       },
       url: {
         type: String,
-        require: true,
+        required: [true, "Please select an image"],
+        
       },
     },
     role: {

@@ -6,7 +6,7 @@ function Footer() {
   return (
     <div className='footer'>
       <div className="container">
-        <div className="footer__partOne">
+        <div className="footer__partOne" data-aos="fade-up">
           <div className="footer__partOne__logo">
             <Logo/>
           </div>
@@ -26,7 +26,7 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="footer__partTwo">
+        <div className="footer__partTwo" data-aos="fade-down">
           <div className="footer__partTwo__header">
             customer support
           </div>
@@ -48,7 +48,7 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="footer__partThree">
+        <div className="footer__partThree" data-aos="fade-up-left">
           <div className="footer__partThree__header">
             contact info
           </div>

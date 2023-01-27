@@ -21,7 +21,7 @@ export default function Home()
     (state) => state.globalReviews
   );
   const loading = productsLoading || categoryLoading ? true : false
-  useEffect(() =>
+  useEffect(() => 
   {
     dispatch(fetchProductsAction());
   }, [])

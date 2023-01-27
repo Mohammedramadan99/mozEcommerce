@@ -32,14 +32,14 @@ export const createProductAction = createAsyncThunk(
     try {
       //http call
       const productData = { ...product };
-      // console.log("from redx " + formData);
+      console.log("from redx" + productData);
       const { data } = await axios.post(
         `${origin}/api/product`,
         productData,
         config
       );
       //dispatch action
-      dispatch(resetproduct());
+      // dispatch(resetproduct());
       return data;
     } catch (error) {
       if (!error?.response) throw error;

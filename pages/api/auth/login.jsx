@@ -49,6 +49,7 @@ handler.post(async (req, res) =>
         isAdmin: userFound?.isAdmin,
         token: generateToken(userFound?._id),
         isVerified: userFound?.isAccountVerified,
+        role: userFound?.role
       });
     } else
     {

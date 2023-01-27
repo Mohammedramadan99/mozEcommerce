@@ -1,30 +1,14 @@
-import React, { Fragment, lazy, Suspense, useEffect, useState } from "react";
-// import "./newProduct.css";
+import React, { useEffect, useState } from "react";
+
 import { useSelector, useDispatch } from "react-redux";
 import { reset, createCategoryAction } from "../../../store/categorySlice";
-import { toast } from "react-toastify";
-import { Button } from "@mui/material";
-// import MetaData from "../layout/MetaData";
-import AccountTreeIcon from "@mui/icons-material/AccountTree";
-import DescriptionIcon from "@mui/icons-material/Description";
-import StorageIcon from "@mui/icons-material/Storage";
-import SpellcheckIcon from "@mui/icons-material/Spellcheck";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import { Spinner } from "react-bootstrap";
 import Image from "next/image";
-
-// import Spinner from "../Layout/Spinner";
-// import { useNavigate } from 'react-router-dom'
-// const Sidebar = lazy(() => import("./Sidebar"));
-
+import {useRouter} from 'next/router'
 const NewCategory = () =>
 {
   const dispatch = useDispatch()
-
-  // const navigate = useNavigate()
-
-  // const { isError, message } = useSelector((state) => state.auth);
-  // const { isCreated, isLoading } = useSelector((state) => state.products);
+  const router = useRouter()
+  const {categoryCreated,loading,isCreated} = useSelector(state => state.category)
 
   const [title, setTitle] = useState("");
   const [images, setImages] = useState([]);
@@ -90,7 +74,12 @@ const NewCategory = () =>
       reader.readAsDataURL(file);
     });
   };
-
+  useEffect(() => {
+    if(isCreated){
+      router.push('/dashboard/category')
+    }
+  }, [isCreated])
+  
   return (
     <>
       <div className='dashboard__container__editCategory__wrapper'>

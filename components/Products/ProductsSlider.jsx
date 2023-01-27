@@ -46,7 +46,7 @@ function ProductsSlider({products})
           {products?.map(p => (
           <SwiperSlide key={p?._id}>
             <Link href={`/product/${p?._id}`} >
-              <a className="productsSlider__items__item">
+              <a className="productsSlider__items__item" data-aos="fade-up">
                 <div className="productsSlider__items__item__imgWrapper">
                   <div className="productsSlider__items__item__imgWrapper__img">
                       {p.images.length > 0 && <Image src={p?.images[0]?.url} layout="fill" objectFit='contain' alt="productImage" />}

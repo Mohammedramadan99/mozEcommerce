@@ -87,5 +87,33 @@ handler.put(async (req, res) =>
   }
   await db.disconnect();
 })
+// delete
+handler.delete(async (req, res) =>
+{
+  await db.connect();
+  try
+  {
+    const category = await Category.findByIdAndDelete(req.query.id); // get the category
+    const categories = await Category.find()
+    
+    if (!category)
+    {
+      res.status(404).json({
+        success: false,
+        message: "category not found",
+      });
+    }
+    
+    res.status(200).json({
+      success: true,
+      categories,
+      deleted:"category deleted successfully",
+    });
+  } catch (err)
+  {
+    return res.status(500).json({ message: err.message });
+  }
+  await db.disconnect();
+})
 
 export default handler

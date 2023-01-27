@@ -82,8 +82,8 @@ function CustomerSays()
           >
             {reviewsList?.map(item => (
               <SwiperSlide key={item?._id}>
-                <FormatQuoteTwoTone className="quoteIcon" />
-                <div className="cstSys__items__item">
+                <FormatQuoteTwoTone className="quoteIcon" data-aos="fade-left" />
+                <div className="cstSys__items__item" data-aos="fade-right">
                   <q className='cstSys__items__item__opinion'> {item.review} </q>
                   <div className='cstSys__items__item__rating'>
                       <Rating value={item.rating} style={{ cursor: 'auto' }} readOnly/>

@@ -3,12 +3,14 @@ import db from '../../../utils/db/dbConnect'
 import { isAuth } from '../../../utils/auth'
 import Category from '../../../Modal/CategoryModal'
 import cloudinary from "cloudinary"
+
 cloudinary.config({
   cloud_name: 'dtmjc8y9z',
   api_key: '379966828288349',
   api_secret: 'a41LSvU3XXAJuQOLxorhOVFPauw',
 });
 const handler = nc()
+
 handler.get(async (req, res) =>
 {
   await db.connect();
@@ -54,7 +56,10 @@ handler.post(async (req, res) =>
       title: req.body.title,
       images:req.body.images
     });
-    res.json(category);
+    res.status(200).json({
+      success:true,
+      created: `category ${category.title} created successfully`
+    });
   } catch (error)
   {
     res.status(500).json({message:error.message});

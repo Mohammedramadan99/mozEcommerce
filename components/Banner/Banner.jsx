@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import burger from '../../public/food/Burger/Food Big Burger.png'
 function Banner()
 {
   const { allProducts } = useSelector(state => state.products.productsList)
@@ -11,18 +10,15 @@ function Banner()
     <div className='banner'>
       <div className="container">
         <div className="banner__content">
-          <div className="banner__content__smallTxt">
+          <div className="banner__content__smallTxt" data-aos="zoom-out-right">
             burger?
           </div>
-          <div className="banner__content__img">
+          <div className="banner__content__img" data-aos="zoom-in-up">
             <Image src="https://res.cloudinary.com/dtmjc8y9z/image/upload/v1668378028/ecommerce/xbbudk0hjtuj1p7l2c8i.png" layout="fill" objectFit='contain' alt="bannerImg" />
           </div>
-          <div className="banner__content__regTxt">
+          <div className="banner__content__regTxt" data-aos="zoom-out-left">
             yes, please! <span>mmmmmm....</span>
           </div>
-          {/* <div className="banner__content__longTxt">
-            While other massive burgers proudly tout their weight as their defining feature, the Triple Meat flies under the radar and blends in with its third- and half-pound competitors. 
-          </div> */}
         </div>
 
       </div>

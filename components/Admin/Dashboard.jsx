@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { incomeStatsAction, ordersStatsAction, monthOrdersStatsAction, usersStatsAction, weekSalesAction,allTimeStatsAction } from '../../store/statsSlice'
 import Navbar  from './Navbar'
 import Sidebar from './Sidebar'
@@ -8,6 +8,7 @@ import Sidebar from './Sidebar'
 function Dashboard({ childrenTwo })
 {
   const [dashboardComponent, setDashboardComponent] = useState('dashboard')
+  const {loading} = useSelector(state => state.stats)
   const dispatch = useDispatch()
   const numbers = true
   useEffect(() =>
@@ -27,9 +28,13 @@ function Dashboard({ childrenTwo })
       <Sidebar setDashboardComponent={setDashboardComponent} />
       <div className="dashboard__container">
         <Navbar />
+        {/* {loading ? (
+          <>loading</>
+        ) : ( */}
         <div className="dashboard__container__wrapper">
           {childrenTwo}
         </div>
+        {/* ) } */}
       </div>
     </div>
   )

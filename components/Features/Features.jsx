@@ -29,7 +29,7 @@ function Features()
       <div className="container">
         <div className="features__items">
           {features.map(feat => (
-            <div key={feat?.id} className="features__items__item">
+            <div key={feat?.id} className="features__items__item" data-aos="fade-left">
               <div className="features__items__item__icon">
                 {feat.icon}
               </div>

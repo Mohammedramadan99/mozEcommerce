@@ -9,14 +9,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { incomeStatsAction, ordersStatsAction, monthOrdersStatsAction, usersStatsAction, weekSalesAction } from '../../../store/statsSlice'
 import Right from './Right/Right'
 import { useRouter } from 'next/router'
-import Header from '../Header'
+import { Spinner } from "react-bootstrap";
+
 const Chart = dynamic(() => import("./Chart"));
 
 function MainPage()
 {
   const dispatch = useDispatch()
   const router = useRouter()
-  const { users: usersState, monthOrders:ordersState,income:incomeState} = useSelector(state => state.stats)
+  const { users: usersState, monthOrders:ordersState,income:incomeState,mounthStatsLoading} = useSelector(state => state.stats)
   const users = usersState ? usersState : []
   const usersPerc = users ? ((users[0]?.total - users[1]?.total) / users[1]?.total) * 100 : []
   const orders = ordersState ? ordersState : []
@@ -63,44 +64,57 @@ function MainPage()
     dispatch(weekSalesAction())
     dispatch(monthOrdersStatsAction())
   }, [dispatch]) 
-  console.log(usersState)
-  console.log(users)
-  console.log(usersPerc)
   
   return (
     <div className='dashboard__container__content__mainPage'>
-      <div className="dashboard__container__content__mainPage__left">
-        <div className="dashboard__container__content__mainPage__left__overview">
-          <div className="dashboard__container__content__mainPage__left__overview__title">overview</div>
-          <div className="dashboard__container__content__mainPage__left__overview__p">how your store is performing in the previous month</div>
-          <div className="dashboard__container__content__mainPage__left__overview__stats">
-            {
-              statsData.map( (item,i) => (
-              <div key={i} className="dashboard__container__content__mainPage__left__overview__stats__item">
-                  <div className="dashboard__container__content__mainPage__left__overview__stats__item__middle">
-                    <div className="dashboard__container__content__mainPage__left__overview__stats__item__middle__title">
-                      {item?.title}
-                    </div>
-                    <div className="dashboard__container__content__mainPage__left__overview__stats__item__middle__no">
-                      {item?.isMoney ? `$ ${item?.digits.toLocaleString()}` : item?.digits}
-                    </div>
-                  </div>
-                  {item.percentage > 0 ? (
-                    <div className="dashboard__container__content__mainPage__left__overview__stats__item__number pstv"> <ArrowUpwardIcon /> {item.percentage}% <span> last month </span>  </div>
-                    ) : (
-                    <div className="dashboard__container__content__mainPage__left__overview__stats__item__number ngtv"> <ArrowDownwardIcon /> {item.percentage}% <span> last month </span>  </div>
-                  )}
-                  <div className="dashboard__container__content__mainPage__left__overview__stats__item__icon" style={{ color: item.color, backgroundColor: item.bgColor }}> {item.icon} </div>
-              </div>
-              ))
-            }
-
-          </div>
-        </div>
-        <Chart />
+      {mounthStatsLoading ? (
+        <div
+        className="spinner"
+        style={{
+          width: "100%",
+          height: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Spinner animation="border" variant="danger" />
       </div>
-      
-        <Right/>
+      ) : (
+        <>
+          <div className="dashboard__container__content__mainPage__left">
+            <div className="dashboard__container__content__mainPage__left__overview">
+              <div className="dashboard__container__content__mainPage__left__overview__title">overview</div>
+              <div className="dashboard__container__content__mainPage__left__overview__p">how your store is performing in the previous month</div>
+              <div className="dashboard__container__content__mainPage__left__overview__stats">
+                {
+                  statsData.map( (item,i) => (
+                  <div key={i} className="dashboard__container__content__mainPage__left__overview__stats__item">
+                      <div className="dashboard__container__content__mainPage__left__overview__stats__item__middle">
+                        <div className="dashboard__container__content__mainPage__left__overview__stats__item__middle__title">
+                          {item?.title}
+                        </div>
+                        <div className="dashboard__container__content__mainPage__left__overview__stats__item__middle__no">
+                          {item?.isMoney ? `$ ${item?.digits.toLocaleString()}` : item?.digits}
+                        </div>
+                      </div>
+                      {item.percentage > 0 ? (
+                        <div className="dashboard__container__content__mainPage__left__overview__stats__item__number pstv"> <ArrowUpwardIcon /> {item.percentage}% <span> last month </span>  </div>
+                        ) : (
+                        <div className="dashboard__container__content__mainPage__left__overview__stats__item__number ngtv"> <ArrowDownwardIcon /> {item.percentage}% <span> last month </span>  </div>
+                      )}
+                      <div className="dashboard__container__content__mainPage__left__overview__stats__item__icon" style={{ color: item.color, backgroundColor: item.bgColor }}> {item.icon} </div>
+                  </div>
+                  ))
+                }
+
+              </div>
+            </div>
+            <Chart />
+          </div>
+          <Right/>
+        </>
+      )}
     </div>
   )
 }

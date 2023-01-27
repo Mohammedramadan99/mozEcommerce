@@ -1,21 +1,19 @@
-import { fetchCategoriesAction, reset } from '../../../store/categorySlice'
+import { fetchCategoriesAction, reset,deleteCategoryAction } from '../../../store/categorySlice'
 import { DataGrid } from '@mui/x-data-grid';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Image from 'next/image';
 import DeleteIcon from '@mui/icons-material/Delete';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditIcon from '@mui/icons-material/Edit';
 import Spinner from 'react-bootstrap/Spinner';
 import { useRouter } from 'next/router';
-import { RouteRounded } from '@mui/icons-material';
 
 export default function Category()
 {
   const dispatch = useDispatch()
   const router = useRouter()
   const {id} = router.query
-  const { categories,loading } = useSelector(state => state.category)
+  const { categories,loading,isDeleted } = useSelector(state => state.category)
   const { allProducts: products } = useSelector(state => state.products.productsList)
   const rows = categories && categories.map(cat =>
   {
@@ -57,7 +55,7 @@ export default function Category()
   ];
   const deleteProductHandler = (id) =>
 {
-    dispatch(deleteproductAction(id))
+    dispatch(deleteCategoryAction(id))
   }
   const editCategoryHandler = (id) =>
   {
@@ -70,13 +68,15 @@ export default function Category()
   // }, [dispatch, isDeleted])
   useEffect(() =>
   {
-    // if (isDeleted)
-    // {
-    //   dispatch(reset())
-    // }
     dispatch(fetchCategoriesAction())
   }, [])
-
+  useEffect(() => {
+    if (isDeleted)
+    {
+      dispatch(reset())
+    }
+  }, [dispatch,isDeleted])
+  
   return (
     <div style={{ height: "90vh", width: '100%', backgroundColor: "#fff", padding: "20px" }}>
       {loading ? (

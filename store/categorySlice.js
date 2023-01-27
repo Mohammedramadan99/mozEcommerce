@@ -56,7 +56,7 @@ export const deleteCategoryAction = createAsyncThunk(
     //http call
     try {
       const { data } = await axios.delete(
-        `${origin}/api/comments/${commentId}`,
+        `${origin}/api/category/${commentId}`,
         config
       );
       return data;
@@ -152,7 +152,7 @@ const categorySlices = createSlice({
   initialState: {
     loading: false,
     categories: [],
-    categoryCreated: {},
+    categoryCreated: "",
     appErr: "",
     serverErr: "",
   },
@@ -161,9 +161,10 @@ const categorySlices = createSlice({
       state.appErr = null;
       state.serverErr = null;
       state.isCreated = false;
-      state.addedReview = false;
       state.isDeleted = false;
       state.isUpdated = false;
+      state.addedReview = false;
+      state.categoryCreated = "";
     },
   },
   extraReducers: (builder) => {
@@ -173,7 +174,8 @@ const categorySlices = createSlice({
     });
     builder.addCase(createCategoryAction.fulfilled, (state, action) => {
       state.loading = false;
-      state.categoryCreated = action?.payload;
+      state.categoryCreated = action?.payload?.created;
+      state.isCreated = true;
       state.appErr = null;
       state.serverErr = null;
     });
@@ -190,7 +192,9 @@ const categorySlices = createSlice({
     });
     builder.addCase(deleteCategoryAction.fulfilled, (state, action) => {
       state.loading = false;
-      state.commentDeleted = action?.payload;
+      state.commentDeleted = action?.payload.deleted;
+      state.isDeleted = true
+      state.categories = action?.payload?.categories;
       state.appErr = null;
       state.serverErr = null;
     });

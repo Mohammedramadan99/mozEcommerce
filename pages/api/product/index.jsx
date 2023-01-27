@@ -35,42 +35,10 @@ handler.get(async (req, res) =>
   await db.disconnect();
 })
 
-// create product --> admin
-handler.put(async (req, res) =>
-{
-  await db.connect();
-  // try
-  // {
-    console.log(req.body)
-    const resPerPage = req.body.n ? req.body.n : 0
-    
-    const productsCount = await Product.countDocuments();
-  const apiFeatures = new APIFeatures(Product.find(), req.query).search().filter();
-    let products = await apiFeatures.query;
-    let filteredProductsCount = products.length;
-    
-  apiFeatures.pagination(products.length)
-  products = await apiFeatures.query.clone();
-  const { query, paginationResult } = apiFeatures
-
-      res.status(200).json({
-        success: true,
-        paginationResult,
-        // resPerPage,
-        products,
-        filteredProductsCount,
-        productsCount
-      });
-    // } catch (err)
-    // {
-    //   return res.status(500).json({ message: err.message });
-    // }
-  await db.disconnect();
-})
-
 handler.post(async (req, res) =>
 {
   await db.connect();
+  console.log("pData",req.body)
   try {
     let images = [];
 
@@ -112,5 +80,40 @@ handler.post(async (req, res) =>
   }
   await db.disconnect();
 })
+
+// create product --> admin
+handler.put(async (req, res) =>
+{
+  await db.connect();
+  // try
+  // {
+    console.log(req.body)
+    const resPerPage = req.body.n ? req.body.n : 0
+    
+    const productsCount = await Product.countDocuments();
+  const apiFeatures = new APIFeatures(Product.find(), req.query).search().filter();
+    let products = await apiFeatures.query;
+    let filteredProductsCount = products.length;
+    
+  apiFeatures.pagination(products.length)
+  products = await apiFeatures.query.clone();
+  const { query, paginationResult } = apiFeatures
+
+      res.status(200).json({
+        success: true,
+        paginationResult,
+        // resPerPage,
+        products,
+        filteredProductsCount,
+        productsCount
+      });
+    // } catch (err)
+    // {
+    //   return res.status(500).json({ message: err.message });
+    // }
+  await db.disconnect();
+})
+
+
 
 export default handler

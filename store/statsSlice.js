@@ -228,17 +228,17 @@ const productSlice = createSlice({
     });
     // orders
     builder.addCase(monthOrdersStatsAction.pending, (state, action) => {
-      state.loading = true;
+      state.mounthStatsLoading = true;
     });
     builder.addCase(monthOrdersStatsAction.fulfilled, (state, action) => {
       state.monthOrders = action?.payload.orders;
-      state.loading = false;
+      state.mounthStatsLoading = false;
       state.isCreated = false;
       state.appErr = null;
       state.serverErr = null;
     });
     builder.addCase(monthOrdersStatsAction.rejected, (state, action) => {
-      state.loading = false;
+      state.mounthStatsLoading = false;
       state.appErr =
         action?.payload?.message || action?.payload?.error?.message;
       state.serverErr = action?.error?.message;

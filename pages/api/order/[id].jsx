@@ -26,6 +26,8 @@ handler.get(async (req, res) =>
 })
 handler.put(async (req, res) =>
 {
+  await db.connect()
+
   try
   {
     const updatedOrders = await Order.findByIdAndUpdate(
@@ -43,6 +45,8 @@ handler.put(async (req, res) =>
       message: error.message
     })
   }
+  await db.disconnect()
+
 })
 
 export default handler

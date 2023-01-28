@@ -1,5 +1,5 @@
 import AOS from "aos";
-import { Provider, useSelector} from "react-redux";
+import { Provider} from "react-redux";
 import { wrapper } from "../store/store";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/style.scss";

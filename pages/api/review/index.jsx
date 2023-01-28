@@ -6,7 +6,6 @@ import Notification from '../../../Modal/NotificationsModal'
 const handler = nc()
 handler.use(isAuth).put(async (req, res) =>
 {
-  await db.connect();
   const { rating, comment, productId } = req.body;
   const user = req.user
   console.log(user)

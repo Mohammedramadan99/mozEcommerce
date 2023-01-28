@@ -47,8 +47,6 @@ const isAuth = async (req, res, next) =>
   {
     throw new Error("There is no token attached to the header");
   }
-  await db.disconnect()
-
 };
 
 const isAdmin = async (req, res, next) =>

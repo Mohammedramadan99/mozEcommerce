@@ -79,7 +79,7 @@ export default function Users({ setUserId, setDashboardComponent })
   }
   const showProductHandler = (id) =>
   {
-    router.push(`dashboard/users/${id}`)
+    router.push(`/dashboard/users/${id}`)
   }
   useEffect(() =>
   {

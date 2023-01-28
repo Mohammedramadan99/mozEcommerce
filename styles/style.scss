@@ -151,8 +151,8 @@ li{
   gap: rem(5);
   text-transform: capitalize;
   font-weight: 700;
-  color: $main__color;
-  cursor: none;
+  color: $main__color !important;
+  // cursor: none;
   user-select: none;
   font-family: 'Lobster', cursive;
   &__one{

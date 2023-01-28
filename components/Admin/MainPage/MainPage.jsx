@@ -17,6 +17,7 @@ function MainPage()
 {
   const dispatch = useDispatch()
   const router = useRouter()
+  const {userAuth} = useSelector(state => state.users)
   const { users: usersState, monthOrders:ordersState,income:incomeState,mounthStatsLoading} = useSelector(state => state.stats)
   const users = usersState ? usersState : []
   const usersPerc = users ? ((users[0]?.total - users[1]?.total) / users[1]?.total) * 100 : []
@@ -58,13 +59,16 @@ function MainPage()
   console.log("path", router.asPath)
   useEffect(() =>
   {
-    dispatch(usersStatsAction())
-    dispatch(ordersStatsAction())
-    dispatch(incomeStatsAction()) 
-    dispatch(weekSalesAction())
-    dispatch(monthOrdersStatsAction())
+    if(userAuth?.role !== "admin"){
+      router.push('/')
+    } else {
+      dispatch(usersStatsAction())
+      dispatch(ordersStatsAction())
+      dispatch(incomeStatsAction()) 
+      dispatch(weekSalesAction())
+      dispatch(monthOrdersStatsAction())
+    }
   }, [dispatch]) 
-  
   return (
     <div className='dashboard__container__content__mainPage'>
       {mounthStatsLoading ? (

@@ -101,7 +101,7 @@ function Products()
   return (
     <div className="products">
       <div className="products__header">
-        <div className="container">
+        <div className="container" data-aos="fade-up">
           <div className="products__header__txt"> all products </div>
           <div className="products__header__breadcrumbs">
             <MuiBreadcrumbs items={[{ title: 'home', link: '/' }, { title: 'products', link: '/products' }]} />
@@ -110,7 +110,7 @@ function Products()
       </div>
       
       <div className="container">
-        <div className="products__sidebar">
+        <div className="products__sidebar" data-aos="fade-right">
           <div className="products__sidebar__header">filter by</div>
           <div className="products__sidebar__filteredProps">
             {activeFilter.length > 0 && activeFilter.map((item, i) => (
@@ -203,7 +203,7 @@ function Products()
             </Accordion>
           </form>
         </div>
-        <div className="products__right">
+        <div className="products__right" data-aos="fade-left">
           <div className="products__right__search">
             <input type="text" placeholder='search ...' value={keyword} onChange={e => setKeyword(e.target.value)} />
             <div className="products__right__search__icon">

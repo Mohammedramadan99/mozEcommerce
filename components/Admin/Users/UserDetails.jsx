@@ -5,6 +5,7 @@ import { fetchUserDetailsAction } from '../../../store/usersSlice'
 import PhoneIcon from '@mui/icons-material/Phone'
 import WebIcon from '@mui/icons-material/WebAsset'
 import MailIcon from '@mui/icons-material/Mail'
+import { useRouter } from 'next/router'
 function UserDetails()
 {
   const dispatch = useDispatch()

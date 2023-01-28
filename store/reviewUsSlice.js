@@ -147,7 +147,7 @@ const productSlice = createSlice({
     builder.addCase(createGlobalReviewAction.fulfilled, (state, action) => {
       state.globalReviewCreated = action?.payload;
       state.loading = false;
-      state.isCreated = false;
+      state.isCreated = true;
       state.appErr = null;
       state.serverErr = null;
     });

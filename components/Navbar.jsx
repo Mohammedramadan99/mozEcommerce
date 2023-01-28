@@ -64,6 +64,13 @@ function NavBar()
                     logout
                   </a>
                 </Link>
+                {userAuth?.role === "admin" && (
+                  <Link href="/dashboard" >
+                    <a className='nav__links__link'>
+                      dashboard
+                    </a>
+                  </Link>
+                )}
               </>
           )}
         </ul>

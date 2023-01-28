@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { registerUserAction, reset } from '../../../store/usersSlice'
 import ErrorIcon from '@mui/icons-material/Error'
 import { useRouter } from 'next/router'
+import { Spinner } from "react-bootstrap";
 
 function Register()
 {
   const dispatch = useDispatch()
   const router = useRouter()
-  const { userAuth,registered,appErr } = useSelector(state => state.users)
+  const { userAuth,registered,appErr,loading } = useSelector(state => state.users)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -69,17 +70,37 @@ function Register()
             </div>
           )}
           <input type="text" placeholder='username' onChange={e => setName(e.target.value)} />
-          <input
-            type="file"
-            name="avatar"
-            accept="image/*"
-            onChange={createProductImagesChange}
-            multiple
-          />
+          <div>
+            <input
+              type="file"
+              name="avatar"
+              accept="image/*"
+              onChange={createProductImagesChange}
+              multiple
+            />
+            <div style={{paddingBottom:"10px"}}>
+              size should be less than <span style={{color:"#ef233c",fontWeight:"700"}}>1MB </span> 
+            </div>
+          </div>
           
           <input type="email" placeholder='email' onChange={e => setEmail(e.target.value)} />
           <input type="password" placeholder='password' onChange={e => setPassword(e.target.value)} />
+          {loading ? (
+            <div
+            className="spinner"
+            style={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Spinner animation="border" variant="danger" />
+          </div>
+          ) : (
+
           <input type="submit" value="register" />
+          )}
         </form>
       </div>
     </div>

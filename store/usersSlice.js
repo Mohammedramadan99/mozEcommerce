@@ -243,7 +243,7 @@ export const fetchUserDetailsAction = createAsyncThunk(
   "user/detail",
   async (id, { rejectWithValue, dispatch }) => {
     try {
-      console.log(id);
+      console.log("dashboardUserDetailsID",id);
       const { data } = await axios.get(`${origin}/api/users/${id}`);
       return data;
     } catch (error) {

@@ -195,14 +195,15 @@
           }
         }
         &__items{
-          @include grid($min:200);
+          @include grid($min: 250);
           @media (max-width: 400px) {
             @include grid($min: 150);
           }
           align-items: start;
           &__item{
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
+            gap: 20px;
             padding: rem(20);
             border: 1px solid #eee;
             box-shadow: 0 0 35px 2px #eee;
@@ -413,4 +414,7 @@
 .css-1lauo1g-MuiRating-root,
 .MuiRating-root {
   color: $main__color !important;
+}
+.submitDialogTextArea{
+  padding: rem(10);
 }

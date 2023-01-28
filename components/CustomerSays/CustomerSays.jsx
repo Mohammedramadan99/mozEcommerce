@@ -12,38 +12,13 @@ import {Stack,Rating} from '@mui/material'
 import { useEffect } from 'react';
 import {fetchGlobalReviewsAction} from '../../store/reviewUsSlice'
 import { useDispatch, useSelector } from 'react-redux';
+import Image from 'next/image';
 function CustomerSays()
 {
   const dispatch = useDispatch()
   const { reviewsList } = useSelector(state => state.globalReviews)
 
-  // const {} = useSelector(state => state.globalReviews)
-  const cstSys = [
-    {
-      id: Math.floor(Math.random() * 1000),
-      cstName: "mohammed ramadan",
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit asperiores quam nulla adipisci sed dicta fuga ab, reiciendis illum autem fugiat pariatur! Impedit temporibus necessitatibus provident nemo illum sequi quas',
-      rating: 4
-    },
-    {
-      id: Math.floor(Math.random() * 1000),
-      cstName: "john doe",
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit asperiores quam nulla adipisci sed dicta fuga ab, reiciendis illum autem fugiat pariatur! Impedit temporibus necessitatibus provident nemo illum sequi quas',
-      rating: 4
-    },
-    {
-      id: Math.floor(Math.random() * 1000),
-      cstName: "bosy cat",
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit asperiores quam nulla adipisci sed dicta fuga ab, reiciendis illum autem fugiat pariatur! Impedit temporibus necessitatibus provident nemo illum sequi quas',
-      rating: 3
-    },
-    {
-      id: Math.floor(Math.random() * 1000),
-      cstName: "felbrt",
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit asperiores quam nulla adipisci sed dicta fuga ab, reiciendis illum autem fugiat pariatur! Impedit temporibus necessitatibus provident nemo illum sequi quas',
-      rating: 2
-    },
-  ]
+
   useEffect(() => {
     dispatch(fetchGlobalReviewsAction())
   }, [])
@@ -87,6 +62,9 @@ function CustomerSays()
                   <q className='cstSys__items__item__opinion'> {item.review} </q>
                   <div className='cstSys__items__item__rating'>
                       <Rating value={item.rating} style={{ cursor: 'auto' }} readOnly/>
+                  </div>
+                  <div className="cstSys__items__item__img">
+                    <Image src={item?.user?.personalImage?.url} layout="fill" alt="img"/>
                   </div>
                   <p className='cstSys__items__item__name'> {item.user.name} </p>
                 </div>

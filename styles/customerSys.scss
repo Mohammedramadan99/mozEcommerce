@@ -39,6 +39,7 @@
             font-size: rem(15) !important;
           }
         }
+        
       }
     }
   }
@@ -75,6 +76,7 @@
         }
       }
     &__item{
+      @include flex($dir:column);
       padding-left: rem(30);
       padding-right: rem(30);
       text-align: center;
@@ -90,6 +92,14 @@
         font-size: rem(30);
         font-weight: 300;
         text-transform: capitalize;
+      }
+      &__img{
+        position: relative;
+        width: rem(50);
+        height: rem(50);
+        object-fit: cover;
+        border-radius: 50%;
+        overflow: hidden;
       }
     }
   }

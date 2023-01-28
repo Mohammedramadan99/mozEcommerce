@@ -12,8 +12,10 @@ import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import Logo from '../logo/Logo'
 import Link from "next/link";
+import { useRouter } from "next/router";
 function Sidebar()
 {
+  const router = useRouter()
   const sidebarData = [
     {
       title: 'main',
@@ -59,7 +61,7 @@ function Sidebar()
                 <Link 
                 href={link.name === 'dashboard' ? `/dashboard` : link.name === 'status' || link.name === 'notifications' ?  `/dashboard` : `/dashboard/${link?.name}`}
                 key={i}>
-                  <a className={`dashboard__sidebar__parts__singlePart__items__item`}>
+                  <a className={router.asPath.endsWith(link?.name?.toLowerCase()) ? `dashboard__sidebar__parts__singlePart__items__item active` : `dashboard__sidebar__parts__singlePart__items__item` }>
                     <div className={`dashboard__sidebar__parts__singlePart__items__item__icon`}>
                       {link.icon}
                     </div>

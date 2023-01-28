@@ -2,12 +2,13 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { useDispatch, useSelector } from 'react-redux';
-import {createGlobalReviewAction} from '../../store/reviewUsSlice'
+import {createGlobalReviewAction,reset} from '../../store/reviewUsSlice'
 function ReviewUs()
 {
   const dispatch = useDispatch()
   const router = useRouter()
   const { userAuth } = useSelector(state => state.users)
+  const { isCreated } = useSelector(state => state.globalReviews)
   const [review,setReview] = useState('')
   const [rating, setRating] = useState(0)
   const addreviewHandler = e =>
@@ -18,10 +19,11 @@ function ReviewUs()
     dispatch(createGlobalReviewAction(reviewData))
   }
   useEffect(() => {
-    if (!userAuth?._id) {
+    if (!userAuth?._id || isCreated) {
+      dispatch(reset())
       router.push('/')
     }
-  }, [userAuth?._id])
+  }, [userAuth?._id,isCreated])
   
   return (
     <div className='reviewUs'>

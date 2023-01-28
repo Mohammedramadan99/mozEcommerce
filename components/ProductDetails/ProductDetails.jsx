@@ -99,12 +99,12 @@ function ProductDetails()
       ) : (
         <>
           <div className="container">        
-            <div className="productDetails__left">
+            <div className="productDetails__left" data-aos="fade-right">
               <div className="productDetails__left__img">
                 {product?.images.length > 0 && <Image src={product?.images[0]?.url} layout="fill" objectFit='contain' alt="productImg" />}
               </div>
             </div>
-            <div className="productDetails__right">
+            <div className="productDetails__right"data-aos="fade-left">
               <div className="productDetails__right__name"> {product?.name} </div>
               <div className="productDetails__right__rating">
                 <div className="productDetails__right__rating__stars">

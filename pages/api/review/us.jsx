@@ -39,11 +39,11 @@ handler.use(isAuth).post(async (req, res) =>
       title: `${user.name} reviewed our website with ${review.rating} stars `,
       content: `${review.comment}`
     }
-    const notification = await Notification.create(notificationData)
+    // const notification = await Notification.create(notificationData)
     
     res.status(200).json({
       success: true,
-      review: result
+      review: result,
     })
   } catch (error) {
     res.status(500).json({

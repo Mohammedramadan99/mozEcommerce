@@ -54,6 +54,7 @@ handler.post(async (req, res) => {
 })
 handler.get(async (req, res) =>
 {
+  await db.connect()
   try
   {
     const orders = await Order.find({})
@@ -67,6 +68,9 @@ handler.get(async (req, res) =>
       message: error.message
     })
   }
+  await db.disconnect()
+
 })
+
 
 export default handler

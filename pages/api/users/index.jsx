@@ -15,7 +15,7 @@ handler.get(async (req, res) =>
   await db.connect();
   try
   {
-    const users = await User.find({}).populate("notifications")
+    const users = await User.find({})
     // await AllProducts[...products]
     res.status(201).json({
       success: true,

@@ -6,6 +6,8 @@ import PhoneIcon from '@mui/icons-material/Phone'
 import WebIcon from '@mui/icons-material/WebAsset'
 import MailIcon from '@mui/icons-material/Mail'
 import { useRouter } from 'next/router'
+import { Spinner } from 'react-bootstrap';
+
 function UserDetails()
 {
   const dispatch = useDispatch()
@@ -32,10 +34,10 @@ function UserDetails()
   return (
     <div className='dashboard__container__userDetails__wrapper'>
       {loading ? (
-        <>
-          loading ... 
-        </>
-      ) : (
+        <div className="loading--container">
+          <Spinner animation="border" variant="danger" />
+        </div>
+        ) : (
         <>
           <div className="dashboard__container__userDetails__wrapper__info">
             <div className="dashboard__container__userDetails__wrapper__info__title">

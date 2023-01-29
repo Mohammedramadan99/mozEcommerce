@@ -4,10 +4,9 @@
     width: 100%;
     @include grid($min:500,$gap:5);
   @media (max-width: 768px) {
-    @include grid($min: 400, $gap: 5);
-  }
-  @media (max-width: 400px) {
-    @include grid($min: 200, $gap: 2);
+    // @include grid($min: 400, $gap: 5);
+    display: grid;
+
   }
 
     &__item{

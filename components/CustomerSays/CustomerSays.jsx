@@ -66,7 +66,7 @@ function CustomerSays()
                   <div className="cstSys__items__item__img">
                     <Image src={item?.user?.personalImage?.url} layout="fill" alt="img"/>
                   </div>
-                  <p className='cstSys__items__item__name'> {item.user.name} </p>
+                  <p className='cstSys__items__item__name'> {item?.user?.name} </p>
                 </div>
               </SwiperSlide>
             ))}

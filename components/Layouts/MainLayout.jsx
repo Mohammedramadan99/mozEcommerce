@@ -20,7 +20,7 @@ export default function MainLayout({ title, children })
         <Navbar/>
         { showCart && <Cart /> }
       </header>
-      <main>{children}</main>
+      <main style={{overflow:"hidden"}}>{children}</main>
       <Footer />
     </>
   );

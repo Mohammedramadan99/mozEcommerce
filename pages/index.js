@@ -17,10 +17,10 @@ export default function Home()
   const { productsList:{ allProducts } } = useSelector((state) => state.products);
   const { loading: productsLoading } = useSelector((state) => state.products);
   const { loading: categoryLoading } = useSelector((state) => state.category);
-  const { loading: reviewusLoading } = useSelector(
-    (state) => state.globalReviews
-  );
-  const loading = productsLoading || categoryLoading ? true : false
+  // const { loading: reviewusLoading } = useSelector(
+  //   (state) => state.globalReviews
+  // );
+  // const loading = productsLoading || categoryLoading ? true : false
   useEffect(() => 
   {
     dispatch(fetchProductsAction());
@@ -42,7 +42,6 @@ export default function Home()
         </div>
       ) : (
         <>
-          {/* {userInfo?.name} */}
           <AllCategories />
           <Banner />
           <Categories />

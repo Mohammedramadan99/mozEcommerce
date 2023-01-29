@@ -62,14 +62,11 @@ export default function Category()
     router.push(`/dashboard/category/edit/${id}`)
   }
 
-  // useEffect(() =>
-  // {
-    // dispatch(fetchProductsAction())
-  // }, [dispatch, isDeleted])
   useEffect(() =>
   {
     dispatch(fetchCategoriesAction())
   }, [])
+  
   useEffect(() => { 
     if (isDeleted)
     {

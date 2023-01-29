@@ -26,7 +26,21 @@
 @import './dashboardNotifications.scss';
 
 // ############## classes ##############
+#__next {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 100vh;
+  overflow: hidden;
+}
 
+@media screen and (max-width: 320px) {
+  #__next {
+    display: flex;
+  flex-direction: column;
+
+  }
+}
 *{
   margin: 0;
   padding: 0;

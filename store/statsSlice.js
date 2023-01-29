@@ -296,7 +296,7 @@ const productSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(allTimeStatsAction.fulfilled, (state, action) =>
-    {
+    { 
       state.allTime = action?.payload.data;
       state.loading = false;
       state.appErr = null;

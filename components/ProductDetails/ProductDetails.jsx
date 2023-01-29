@@ -37,7 +37,7 @@ function ProductDetails()
   const [open, setOpen] = useState(false);
   const [rating, setRating] = useState(0);
   const categoryProducts = products?.filter(p => p._id !== product?._id)
-  
+  const [alert,setAlert] = useState('')
   const router = useRouter();
   const { id } = router.query;
   const ChangeQuantity = (type) =>
@@ -59,7 +59,7 @@ function ProductDetails()
   {
     if (!userAuth || !userAuth.token)
     {
-      toast.error('you need to login first')
+      setAlert('you need to login first')
     } else
     {
       const myForm = { rating: rating, comment: comment, productId:id }
@@ -143,6 +143,9 @@ function ProductDetails()
         onClose={submitReviewToggle}
       >
         <DialogTitle>Submit Review</DialogTitle>
+        <div style={{textAlign:"center",color:"#ef233c",textTransform:"capitalize"}}>
+          {alert !== "" && alert}
+        </div>
         <DialogContent className="submitDialog">
           <Rating
             onChange={(e) => setRating(e.target.value)}

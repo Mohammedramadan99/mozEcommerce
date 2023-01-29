@@ -1,6 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { HYDRATE, createWrapper } from "next-redux-wrapper";
-// import users from "./usersSlice";
 import usersReducer from "./usersSlice";
 import productsReducer from "./productsSlice";
 import commentsReducer from "./commentSlices";
@@ -18,7 +17,7 @@ const combinedReducer = combineReducers({
   category: categoryReducer,
   order: orderReducer,
   stats: statsReducer,
-  notifications: notificationsReducer,  
+  notifications: notificationsReducer,   
 });
 
 export const makeStore = () =>

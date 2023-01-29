@@ -763,7 +763,7 @@ const usersSlices = createSlice({
     builder.addCase(deleteUserAction.fulfilled, (state, action) => {
       state.isDeleted = true;
       state.loading = false;
-      state.appErr = null;
+      state.appErr = null; 
       state.serverErr = null;
     });
     builder.addCase(deleteUserAction.rejected, (state, action) => {

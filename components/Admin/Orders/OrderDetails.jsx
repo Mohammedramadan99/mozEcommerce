@@ -4,6 +4,8 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchOrderAction } from '../../../store/orderSlice'
 import Header from '../Header'
+import { Spinner } from "react-bootstrap";
+
 function OrderDetails()
 {
   const dispatch = useDispatch()
@@ -19,9 +21,18 @@ function OrderDetails()
       <Header title='order details' />
       <div className='dashboard__container__orderDetails__wrapper'>
         {loading ? (
-          <>
-            loading ... 
-          </>
+          <div
+            className="spinner"
+            style={{
+              width: "100%",
+              height: "100vh",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Spinner animation="border" variant="danger" />
+          </div>
         ) : (
           <>
             <div className="dashboard__container__orderDetails__wrapper__header">

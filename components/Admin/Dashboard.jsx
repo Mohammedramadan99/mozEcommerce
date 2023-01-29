@@ -28,13 +28,9 @@ function Dashboard({ childrenTwo })
       <Sidebar setDashboardComponent={setDashboardComponent} />
       <div className="dashboard__container">
         <Navbar />
-        {/* {loading ? (
-          <>loading</>
-        ) : ( */}
         <div className="dashboard__container__wrapper">
           {childrenTwo}
         </div>
-        {/* ) } */}
       </div>
     </div>
   )

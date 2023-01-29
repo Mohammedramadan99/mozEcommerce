@@ -10,7 +10,6 @@ function EditCategory()
   const router = useRouter()
   const { id } = router.query
   const { categoryDetails,loading,isUpdated } = useSelector(state => state.category)
-  // const [categoryDetails, setCategoryDetails] = useState()
   const [title, setTitle] = useState('')
   const [image, setImage] = useState('')
   const [imagePreview, setImagePreview] = useState('')

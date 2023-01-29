@@ -21,15 +21,7 @@ const NewCategory = () =>
     }
     dispatch(updateCategoryAction(catData))
   }
-  // const categories = [
-  //   'burger',
-  //   'bagels',
-  //   'checken',
-  //   'cake',
-  //   'mexican food'
-  // ];
-
-
+  
   const createProductSubmitHandler = (e) =>
   {
     e.preventDefault();

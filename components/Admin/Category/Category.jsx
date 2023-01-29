@@ -70,7 +70,7 @@ export default function Category()
   {
     dispatch(fetchCategoriesAction())
   }, [])
-  useEffect(() => {
+  useEffect(() => { 
     if (isDeleted)
     {
       dispatch(reset())

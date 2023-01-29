@@ -48,16 +48,6 @@ handler.post(async (req, res) =>
         url: myCloud.secure_url,
       },
     });
-    // ? create the token and activation url
-    // const activation_token = createToken.activation(user)
-
-    // const url = `http://localhost:3000/api/v1/activate/${activation_token}`
-
-    // ? send activation link to the email
-    // sendMail.sendEmailRegister(email,url,"verify your email")
-
-    // res.json({message: "success, activate your acc to start"})
-    // FOURTH => with success case => create the token and pass the user to frontend
     res.status(200).json({
       user
     })

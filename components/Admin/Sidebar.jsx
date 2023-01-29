@@ -31,18 +31,7 @@ function Sidebar()
       title: 'useful',
       items: [{ name: 'status', icon: <InsertChartIcon /> }, { name: 'notifications', icon: <NotificationsNoneIcon /> }],
       part:'Three'
-    },
-    
-    // {
-    //   title: 'service',
-    //   items: [{ name: 'system health', icon: <SettingsSystemDaydreamOutlinedIcon /> }, { name: 'logs', icon: <PsychologyOutlinedIcon /> }, { name: 'setting', icon: <SettingsApplicationsIcon /> }],
-    //   part:'Four'
-    // },
-    // {
-    //   title: 'user',
-    //   items: [{ name: 'profile', icon: <AccountCircleOutlinedIcon /> }, { name: 'logout', icon: <ExitToAppIcon /> }],
-    //   part:'Five'
-    // },
+    }
   ]
   
   return (

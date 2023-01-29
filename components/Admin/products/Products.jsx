@@ -9,7 +9,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import Spinner from 'react-bootstrap/Spinner';
 import { useRouter } from 'next/router';
 
-export default function Products({ setProductId, setDashboardComponent })
+export default function Products()
 {
   const dispatch = useDispatch()
   const router = useRouter()
@@ -47,8 +47,6 @@ export default function Products({ setProductId, setDashboardComponent })
       type: 'number',
       width: 90,
       sortable: true,
-      // valueGetter: (params) =>
-      //   `$${params.row.price || ''}`,
     },
     {
       field: 'pDesc',
@@ -87,11 +85,6 @@ export default function Products({ setProductId, setDashboardComponent })
   {
     router.push(`/dashboard/products/edit/${id}`)
   }
-  
-  // let string = router.asPath
-  // let test = string.startsWith('/dashboard')
-  // console.log("string pathname", string);
-  // console.log("pathname", test);
 
   useEffect(() => {
     dispatch(fetchProductsAction())

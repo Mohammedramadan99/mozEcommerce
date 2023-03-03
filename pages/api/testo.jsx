@@ -13,11 +13,10 @@ handler.get(async (req, res) =>
   await db.connect();
   try
   { 
-    const data = req.body
+    console.log("hello mo")
     res.status(201).json({
       success: true,
       msg:"good",
-      data
     });
   } catch (err)
   {

@@ -2,13 +2,11 @@ import nc from 'next-connect'
 
 import db from '../../../utils/db/dbConnect'
 import cloudinary from "cloudinary"
-import sendToken from '../../../utils/createToken'
 import User from "../../../Modal/userModel"
-import { photoUpload } from '../../../utils/uploadingImg'
 cloudinary.config({
-  cloud_name: 'dtmjc8y9z',
-  api_key: '379966828288349',
-  api_secret: 'a41LSvU3XXAJuQOLxorhOVFPauw',
+  cloud_name: process.env.CLOUDINARY_NAME ,
+  api_key: process.env.CLOUDINARY_API_KEY ,
+  api_secret: process.env.CLOUDINARY_API_SECRET ,
 });
 
 const handler = nc();

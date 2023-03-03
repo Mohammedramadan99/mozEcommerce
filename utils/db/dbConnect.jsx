@@ -19,7 +19,7 @@ async function connect()
     }
     await mongoose.disconnect();
   }
-  const db = await mongoose.connect("mongodb+srv://Ecommerce:m1964118@cluster0.7n14b.mongodb.net/mozEcommerce");
+  const db = await mongoose.connect(process.env.MONGODB_URI);
   // const db = await mongoose.connect("mongodb://0.0.0.0:27017/MozEcommerce");
   console.log('new connection');
   connection.isConnected = db.connections[0].readyState;

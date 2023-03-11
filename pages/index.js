@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsAction } from "../store/productsSlice";
 import dynamic from "next/dynamic";
 import { Spinner } from "react-bootstrap";
+import { fetchCategoriesAction } from "../store/categorySlice";
+import { fetchGlobalReviewsAction } from "../store/reviewUsSlice";
 const Banner = dynamic(() => import("../components/Banner/Banner"), {
   ssr: false,
 });
@@ -52,7 +54,9 @@ export default function Home() {
   // const loading = productsLoading || categoryLoading ? true : false
   useEffect(() => {
     dispatch(fetchProductsAction());
-  }, []);
+    dispatch(fetchCategoriesAction());
+    dispatch(fetchGlobalReviewsAction());
+  }, [dispatch]);
   return (
     <div>
       {productsLoading ? (

@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import { Virtual } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper'
-import 'swiper/css';
-import 'swiper/css/virtual';
-import 'swiper/css/free-mode'
-import 'swiper/css/pagination'
-import 'swiper/css/navigation';
-import Image from 'next/image'
-import Link from 'next/link'
-import {fetchCategoriesAction} from '../../store/categorySlice'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect, useState } from "react";
+import { Virtual } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation } from "swiper";
+import "swiper/css";
+import "swiper/css/virtual";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import Image from "next/image";
+import Link from "next/link";
+// import {fetchCategoriesAction} from '../../store/categorySlice'
+import { useDispatch, useSelector } from "react-redux";
 
-function AllCategories()
-{
-  const dispatch = useDispatch()
-  const {categories} = useSelector(state => state.category)
+function AllCategories() {
+  const dispatch = useDispatch();
+  const { categories } = useSelector((state) => state.category);
   // const [categories, setCategories] = useState([
   //   {
   //     id: Math.floor(Math.random() * 1000),
@@ -58,12 +57,11 @@ function AllCategories()
   //     img: checken_3
   //   },
   // ])
-  useEffect(() => {
-    dispatch(fetchCategoriesAction())
-  }, [dispatch])
-  
+  // useEffect(() => {
+  // }, [dispatch])
+
   return (
-    <div className='allCategories'>
+    <div className="allCategories">
       <div className="allCategories__items">
         <Swiper
           navigation={true}
@@ -89,12 +87,20 @@ function AllCategories()
           }}
           virtual
         >
-          {categories?.map(item => (
+          {categories?.map((item) => (
             <SwiperSlide key={item?._id}>
-              <Link href={`/products?category=${item?.title}`} >
-                <a className="allCategories__items__item" data-aos="zoom-out-left">
+              <Link href={`/products?category=${item?.title}`}>
+                <a
+                  className="allCategories__items__item"
+                  data-aos="zoom-out-left"
+                >
                   <div className="allCategories__items__item__img">
-                    <Image src={item?.images[0]?.url} layout="fill" objectFit="contain" alt="categoryImg" />
+                    <Image
+                      src={item?.images[0]?.url}
+                      layout="fill"
+                      objectFit="contain"
+                      alt="categoryImg"
+                    />
                   </div>
                   <div className="allCategories__items__item__info">
                     <div className="allCategories__items__item__info__name">
@@ -108,7 +114,7 @@ function AllCategories()
         </Swiper>
       </div>
     </div>
-  )
+  );
 }
 
-export default AllCategories
+export default AllCategories;

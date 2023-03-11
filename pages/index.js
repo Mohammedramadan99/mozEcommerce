@@ -53,8 +53,8 @@ export default function Home() {
   // );
   // const loading = productsLoading || categoryLoading ? true : false
   useEffect(() => {
-    dispatch(fetchProductsAction());
-    dispatch(fetchCategoriesAction());
+    // dispatch(fetchProductsAction());
+    // dispatch(fetchCategoriesAction());
     dispatch(fetchGlobalReviewsAction());
   }, [dispatch]);
   return (

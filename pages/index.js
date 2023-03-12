@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { Spinner } from "react-bootstrap";
 import { fetchCategoriesAction } from "../store/categorySlice";
 import { fetchGlobalReviewsAction } from "../store/reviewUsSlice";
+import useProducts from "../hooks/useProducts";
 const Banner = dynamic(() => import("../components/Banner/Banner"), {
   ssr: false,
 });
@@ -44,6 +45,8 @@ const SpecialOffer = dynamic(
 
 export default function Home() {
   const dispatch = useDispatch();
+  const { data } = useProducts();
+  console.log({ data });
   const {
     productsList: { allProducts },
   } = useSelector((state) => state.products);
@@ -53,7 +56,7 @@ export default function Home() {
   // );
   // const loading = productsLoading || categoryLoading ? true : false
   useEffect(() => {
-    dispatch(fetchProductsAction());
+    // dispatch(fetchProductsAction());
   }, [dispatch]);
   return (
     <div>

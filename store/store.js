@@ -17,7 +17,7 @@ const combinedReducer = combineReducers({
   category: categoryReducer,
   order: orderReducer,
   stats: statsReducer,
-  notifications: notificationsReducer,   
+  notifications: notificationsReducer,
 });
 
 export const makeStore = () =>

@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice, createAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
 const hostname =
   typeof window !== "undefined" && window.location.hostname
     ? window.location.hostname
@@ -17,7 +16,7 @@ export const createGlobalReviewAction = createAsyncThunk(
   async (revData, { rejectWithValue, getState, dispatch }) => {
     // console.log(product);
     //get user token
-    const user = process.browser &&  getState()?.users;
+    const user = process.browser && getState()?.users;
     const { userAuth } = user;
     const config = {
       headers: {
@@ -47,8 +46,7 @@ export const createGlobalReviewAction = createAsyncThunk(
 export const fetchGlobalReviewsAction = createAsyncThunk(
   "reviewUs/list",
   async (_, { rejectWithValue, getState, dispatch }) => {
-    try
-    {
+    try {
       const { data } = await axios.get(`${origin}/api/review/us`);
       return data;
     } catch (error) {
@@ -61,9 +59,8 @@ export const fetchGlobalReviewsAction = createAsyncThunk(
 export const fetchProductDetailsAction = createAsyncThunk(
   "reviewUs/detail",
   async (id, { rejectWithValue, getState, dispatch }) => {
-    try
-    {
-      console.log(id)
+    try {
+      console.log(id);
       const { data } = await axios.get(`${origin}/api/reviewUs/${id}`);
       return data;
     } catch (error) {
@@ -78,7 +75,7 @@ export const toggleAddLikesToproduct = createAsyncThunk(
   "reviewUs/like",
   async (productId, { rejectWithValue, getState, dispatch }) => {
     //get user token
-    const user = process.browser &&  getState()?.users;
+    const user = process.browser && getState()?.users;
     const { userAuth } = user;
     const config = {
       headers: {
@@ -105,7 +102,7 @@ export const toggleAddDisLikesToproduct = createAsyncThunk(
   "reviewUs/dislike",
   async (productId, { rejectWithValue, getState, dispatch }) => {
     //get user token
-    const user = process.browser &&  getState()?.users;
+    const user = process.browser && getState()?.users;
     const { userAuth } = user;
     const config = {
       headers: {
@@ -153,10 +150,9 @@ const productSlice = createSlice({
     });
     builder.addCase(createGlobalReviewAction.rejected, (state, action) => {
       state.loading = false;
-      state.appErr =
-        action?.payload?.message || action?.payload?.error?.message;
+      state.appErr = null;
       state.serverErr = action?.error?.message;
-    });    
+    });
     //fetch products
     builder.addCase(fetchGlobalReviewsAction.pending, (state, action) => {
       state.loading = true;
@@ -175,8 +171,6 @@ const productSlice = createSlice({
   },
 });
 
-export const {
-  reset,
-} = productSlice.actions;
+export const { reset } = productSlice.actions;
 
 export default productSlice.reducer;

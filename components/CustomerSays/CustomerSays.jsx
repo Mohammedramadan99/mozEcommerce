@@ -10,16 +10,16 @@ import "swiper/css/navigation";
 import FormatQuoteTwoTone from "@mui/icons-material/FormatQuote";
 import { Stack, Rating } from "@mui/material";
 import { useEffect } from "react";
-// import { fetchGlobalReviewsAction } from "../../store/reviewUsSlice";
+import { fetchGlobalReviewsAction } from "../../store/reviewUsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 function CustomerSays() {
   const dispatch = useDispatch();
   const { reviewsList } = useSelector((state) => state.globalReviews);
 
-  // useEffect(() => {
-  //   dispatch(fetchGlobalReviewsAction())
-  // }, [])
+  useEffect(() => {
+    dispatch(fetchGlobalReviewsAction());
+  }, []);
 
   return (
     <div className="cstSys">

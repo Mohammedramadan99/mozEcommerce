@@ -161,7 +161,9 @@ export const fetchFilteredProductsAction = createAsyncThunk(
         priceGreater: productsData.priceGreater ? productsData.priceGreater : 0,
         size: productsData.size ? productsData.size : "",
         ratings: productsData.ratings ? productsData.ratings : 0,
-        category: productsData.category ? productsData.category.toLowerCase() : null,
+        category: productsData.category
+          ? productsData.category.toLowerCase()
+          : null,
       };
       const {
         keyword,
@@ -428,8 +430,9 @@ const productSlice = createSlice({
     });
     builder.addCase(createProductAction.rejected, (state, action) => {
       state.loading = false;
-      state.appErr =
-        action?.payload?.message || action?.payload?.error?.message;
+      state.appErr = action.payload
+        ? action?.payload?.message || action?.payload?.error?.message
+        : null;
       state.serverErr = action?.error?.message;
     });
 
@@ -449,7 +452,7 @@ const productSlice = createSlice({
     builder.addCase(updateproductAction.rejected, (state, action) => {
       state.isUpdated = false;
       state.loading = false;
-      state.appErr = action?.payload?.message;
+      state.appErr = action.payload ? action?.payload?.message : null;
       state.serverErr = action?.error?.message;
     });
 
@@ -468,7 +471,7 @@ const productSlice = createSlice({
     });
     builder.addCase(deleteproductAction.rejected, (state, action) => {
       state.loading = false;
-      state.appErr = action?.payload?.message;
+      state.appErr = action.payload ? action?.payload?.message : null;
       state.serverErr = action?.error?.message;
     });
 
@@ -484,7 +487,7 @@ const productSlice = createSlice({
     });
     builder.addCase(fetchProductsAction.rejected, (state, action) => {
       state.loading = false;
-      state.appErr = action?.payload?.message;
+      state.appErr = action.payload ? action?.payload?.message : null;
       state.serverErr = action?.error?.message;
     });
     //fetch products
@@ -499,7 +502,7 @@ const productSlice = createSlice({
     });
     builder.addCase(fetchFilteredProductsAction.rejected, (state, action) => {
       state.loading = false;
-      state.appErr = action?.payload?.message;
+      state.appErr = action.payload ? action?.payload?.message : null;
       state.serverErr = action?.error?.message;
     });
 
@@ -515,7 +518,7 @@ const productSlice = createSlice({
     });
     builder.addCase(fetchProductDetailsAction.rejected, (state, action) => {
       state.loading = false;
-      state.appErr = action?.payload?.message;
+      state.appErr = action.payload ? action?.payload?.message : null;
       state.serverErr = action?.error?.message;
     });
     //Likes
@@ -530,7 +533,7 @@ const productSlice = createSlice({
     });
     builder.addCase(toggleAddLikesToproduct.rejected, (state, action) => {
       state.loading = false;
-      state.appErr = action?.payload?.message;
+      state.appErr = action.payload ? action?.payload?.message : null;
       state.serverErr = action?.error?.message;
     });
     //DisLikes
@@ -545,7 +548,7 @@ const productSlice = createSlice({
     });
     builder.addCase(toggleAddDisLikesToproduct.rejected, (state, action) => {
       state.loading = false;
-      state.appErr = action?.payload?.message;
+      state.appErr = action.payload ? action?.payload?.message : null;
       state.serverErr = action?.error?.message;
     });
     //review
@@ -560,7 +563,7 @@ const productSlice = createSlice({
     });
     builder.addCase(addReview.rejected, (state, action) => {
       state.loading = false;
-      state.appErr = action?.payload?.message;
+      state.appErr = action.payload ? action?.payload?.message : null;
       state.serverErr = action?.error?.message;
     });
   },

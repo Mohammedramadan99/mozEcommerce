@@ -9,7 +9,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import Image from "next/image";
 import Link from "next/link";
-// import {fetchCategoriesAction} from '../../store/categorySlice'
+import { fetchCategoriesAction } from "../../store/categorySlice";
 import { useDispatch, useSelector } from "react-redux";
 
 function AllCategories() {
@@ -57,8 +57,9 @@ function AllCategories() {
   //     img: checken_3
   //   },
   // ])
-  // useEffect(() => {
-  // }, [dispatch])
+  useEffect(() => {
+    dispatch(fetchCategoriesAction());
+  }, [dispatch]);
 
   return (
     <div className="allCategories">

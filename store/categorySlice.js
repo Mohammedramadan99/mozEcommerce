@@ -12,11 +12,11 @@ export const createCategoryAction = createAsyncThunk(
   "category/create",
   async (category, { rejectWithValue, getState, dispatch }) => {
     //get user token
-      const categoryData = { ...category };
+    const categoryData = { ...category };
     const user = process.browser && getState()?.users;
     const { userAuth } = user;
     const config = {
-    headers: {
+      headers: {
         Authorization: `Bearer ${userAuth?.token}`,
       },
     };
@@ -80,7 +80,8 @@ export const updateCategoryAction = createAsyncThunk(
     //http call
     try {
       const { data } = await axios.put(
-        `${origin}/api/category/${category.id}`,category.data,
+        `${origin}/api/category/${category.id}`,
+        category.data,
         config
       );
       return data;
@@ -149,7 +150,7 @@ const categorySlices = createSlice({
     loading: false,
     categories: [],
     categoryCreated: "",
-    appErr: "",
+    appErr: null,
     serverErr: "",
   },
   reducers: {
@@ -189,7 +190,7 @@ const categorySlices = createSlice({
     builder.addCase(deleteCategoryAction.fulfilled, (state, action) => {
       state.loading = false;
       state.commentDeleted = action?.payload.deleted;
-      state.isDeleted = true
+      state.isDeleted = true;
       state.categories = action?.payload?.categories;
       state.appErr = null;
       state.serverErr = null;
@@ -255,5 +256,5 @@ const categorySlices = createSlice({
     });
   },
 });
-export const {reset} = categorySlices.actions
+export const { reset } = categorySlices.actions;
 export default categorySlices.reducer;
